@@ -1,0 +1,34 @@
+.Why-we {
+  width: 100%;
+  margin: auto;
+  .whywe-wrapper {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    .image-part {
+      height: 400px;
+      width: 800px;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+      }
+    }
+    .text-part {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      h3 {
+        font-size: 32px;
+        line-height: 40px;
+        color: #231f20;
+      }
+      p {
+        font-size: 16px;
+        line-height: 24px;
+        color: #231f20;
+      }
+    }
+  }
+}

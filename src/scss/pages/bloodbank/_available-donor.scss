@@ -1,0 +1,81 @@
+.donor-section {
+  width: 100%;
+  margin: auto;
+  h2 {
+    font-size: 40px;
+    line-height: 44px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .form-container {
+    width: 50%;
+    margin: auto;
+    border: 1px solid #000;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 12px 24px;
+    .primary-data {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      .input-label {
+        display: flex;
+        flex-direction: column;
+        width: calc(50% - 24px);
+        gap: 10px;
+        label {
+          font-size: 16px;
+          line-height: 24px;
+          font-weight: 600;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="date"] {
+          height: 30px;
+          border-radius: 8px;
+          color: #19191bcc;
+          padding: 8px 12px;
+          border: 1px solid #ec5b00;
+        }
+        select {
+          height: 45px;
+          border-radius: 8px;
+          color: #19191bcc;
+          padding: 8px 12px;
+          border: 1px solid #ec5b00;
+        }
+        option {
+          background-color: transparent;
+        }
+      }
+    }
+    .secondary-data {
+      width: 100%;
+      .message {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        label {
+          font-size: 16px;
+          line-height: 24px;
+          font-weight: 600;
+        }
+      }
+    }
+    button {
+      padding: 12px 24px;
+      width: fit-content;
+      color: #19191bcc;
+      border-radius: 8px;
+      background-color: #ec5b00;
+      border: 1px solid #ec5b00;
+      color: #fff;
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+}
