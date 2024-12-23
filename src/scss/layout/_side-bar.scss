@@ -1,0 +1,38 @@
+.side-bar {
+  width: 250px;
+  height: 100vh;
+  background-color: #f7efe5;
+  .side-bar-wrapper {
+    width: 100%;
+    padding: 22px 22px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    .dashboard,
+    .user-management,
+    .volunteer,
+    .add-bank {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .icon {
+        font-size: 16px;
+      }
+      p {
+        font-size: 16px;
+        line-height: 24px;
+        margin: 0;
+      }
+      &:hover {
+        cursor: pointer;
+        .icon {
+          color: #ff9400;
+        }
+        p {
+          color: #ff9400;
+        }
+      }
+    }
+  }
+}

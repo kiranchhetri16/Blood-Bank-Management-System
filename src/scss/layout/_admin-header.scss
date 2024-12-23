@@ -1,0 +1,62 @@
+.admin-header {
+  width: 100%;
+  margin: auto;
+  nav {
+    display: flex;
+    justify-content: space-between;
+    // background-color: red;
+    padding: 12px 24px;
+
+    .logo {
+      height: 30px;
+      width: 100px;
+      border: 1px solid black;
+    }
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      .search-btn {
+        width: 212px;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border: 1px solid #8798ad;
+        background-color: #fff;
+        gap: 4px;
+        border-radius: 4px;
+        .search-icon {
+          font-size: 16px;
+          color: #737373;
+        }
+        input[type="text"] {
+          border: none;
+          outline: none;
+        }
+      }
+      .icons {
+        display: flex;
+        gap: 16px;
+        .help-icon {
+          font-size: 16px;
+          color: #8798ad;
+        }
+      }
+      .profile {
+        height: 30px;
+        width: 30px;
+        background-color: #f8ddb8;
+        border-radius: 50%;
+        padding: 4px;
+
+        p {
+          font-size: 12px;
+          color: #ff9400;
+          line-height: 16px;
+          text-align: center;
+          padding-top: 6px;
+        }
+      }
+    }
+  }
+}

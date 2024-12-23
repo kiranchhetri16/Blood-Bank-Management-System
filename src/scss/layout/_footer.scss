@@ -1,0 +1,52 @@
+.footer {
+  width: 100%;
+  background-color: black;
+  margin: auto;
+  margin-top: 32px;
+  .footer-wrapper {
+    display: flex;
+    gap: 80px;
+    padding: 24px 0;
+    .looking-for-blood,
+    .footer-contact-details,
+    .footer-resources {
+      display: flex;
+      flex-direction: column;
+      ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        gap: 8px;
+        p {
+          color: #fff;
+          font-size: 24px;
+          line-height: 32px;
+        }
+        li {
+          text-align: none;
+          color: #fff;
+          font-size: 16px;
+          line-height: 18px;
+          span {
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+
+    .footer-contact-details {
+      display: flex;
+      flex-direction: col;
+    }
+  }
+  .last-footer-details {
+    display: flex;
+    gap: 5px;
+    p {
+      font-size: 18px;
+      line-height: 24px;
+      color: #fff;
+    }
+  }
+}
