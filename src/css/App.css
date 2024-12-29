@@ -314,9 +314,18 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
 body {
   font-family: "Roboto", sans-serif;
-  box-sizing: border-box;
+  width: 100%;
+  overflow-x: clip;
+  scroll-behavior: smooth;
 }
 
 .ci-container {
@@ -731,48 +740,56 @@ body {
   line-height: 26px;
   font-weight: 700;
   text-align: center;
+  padding: 12px 0;
 }
 .blog-section .blog-wrapper {
+  width: 100%;
+  margin: auto;
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
 }
-.blog-section .blog-wrapper .blog-cart {
+.blog-section .blog-wrapper .cart-wrapper {
   width: 400px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   border: 1px solid black;
   padding: 12px;
+  border-radius: 8px;
 }
-.blog-section .blog-wrapper .blog-cart .cart-image {
+.blog-section .blog-wrapper .cart-wrapper .cart-image {
   width: 100%;
   height: 300px;
 }
-.blog-section .blog-wrapper .blog-cart .cart-image img {
+.blog-section .blog-wrapper .cart-wrapper .cart-image img {
   width: 100%;
   height: 100%;
 }
-.blog-section .blog-wrapper .blog-cart i {
+.blog-section .blog-wrapper .cart-wrapper i {
   color: grey;
 }
-.blog-section .blog-wrapper .blog-cart i span {
+.blog-section .blog-wrapper .cart-wrapper i span {
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
   margin-left: 10px;
 }
-.blog-section .blog-wrapper .blog-cart h3 {
+.blog-section .blog-wrapper .cart-wrapper a {
+  text-decoration: none;
+  color: #000000;
+}
+.blog-section .blog-wrapper .cart-wrapper a h3 {
   font-size: 32px;
   line-height: 36px;
   font-weight: 700;
 }
-.blog-section .blog-wrapper .blog-cart h3:hover {
+.blog-section .blog-wrapper .cart-wrapper a h3:hover {
   text-decoration: underline;
   color: #007000;
   cursor: pointer;
 }
-.blog-section .blog-wrapper .blog-cart:hover {
+.blog-section .blog-wrapper .cart-wrapper:hover {
   transform: scale(1.02);
   transition: 0.3s;
 }
@@ -826,6 +843,34 @@ body {
   background-color: red;
   cursor: pointer;
   transition: 0.3s;
+}
+
+.blog-listing-section {
+  width: 100%;
+  margin: auto;
+}
+.blog-listing-section h2 {
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 700;
+  text-align: center;
+  padding: 12px 0;
+}
+.blog-listing-section i {
+  display: flex;
+  gap: 12px;
+  margin: auto;
+  margin: 0 100px;
+}
+.blog-listing-section i span {
+  font-size: 16px;
+}
+.blog-listing-section p {
+  font-size: 24px;
+  line-height: 32px;
+  padding: 16px 0;
+  margin: auto;
+  margin: 0 100px;
 }
 
 /*# sourceMappingURL=App.css.map */

@@ -1,0 +1,28 @@
+.blog-listing-section {
+  width: 100%;
+  margin: auto;
+  h2 {
+    font-size: 40px;
+    line-height: 44px;
+    font-weight: 700;
+    text-align: center;
+    padding: 12px 0;
+  }
+  i {
+    display: flex;
+    gap: 12px;
+
+    margin: auto;
+    margin: 0 100px;
+    span {
+      font-size: 16px;
+    }
+  }
+  p {
+    font-size: 24px;
+    line-height: 32px;
+    padding: 16px 0;
+    margin: auto;
+    margin: 0 100px;
+  }
+}

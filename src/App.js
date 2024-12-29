@@ -17,6 +17,7 @@ import RequestBlood from "./pages/bloodbank/RequestBlood";
 import Volunteer from "./pages/bloodbank/Volunteer";
 import BlogPost from "./pages/post/BlogPost";
 import AddPost from "./admin/pages/User Management/AddPost";
+import BlogListing from "./pages/post/BlogListing";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/volunteer" element={<Volunteer />} />
           <Route path="/post" element={<BlogPost />} />
           <Route path="/addpost" element={<AddPost />} />
+          <Route path="/listingpage/:id" element={<BlogListing />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const BlogPost = () => {
   const { id } = useParams();
@@ -35,7 +36,7 @@ const BlogPost = () => {
         <h2>Recent Blog</h2>
         <div className="blog-wrapper">
           {post.map((post) => (
-            <>
+            <div className="cart-wrapper">
               <div
                 className="cart-image"
                 style={{
@@ -43,12 +44,15 @@ const BlogPost = () => {
                 }}
               ></div>
 
-              <div className="blog-meta">
+              <i>
                 <FontAwesomeIcon icon={faCalendar} />
                 <span>{new Date(post.created_at).toLocaleDateString()}</span>
-              </div>
-              <h3>{post.title}</h3>
-            </>
+              </i>
+              <Link to={`/listingpage/${post.id}`}>
+                {" "}
+                <h3>{post.title}</h3>
+              </Link>
+            </div>
           ))}
           <div className="blog-cart">{/* <p>{post.content}</p> */}</div>
         </div>
