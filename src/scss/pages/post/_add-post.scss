@@ -1,0 +1,50 @@
+.add-blog-post {
+  width: 100%;
+  margin: auto;
+  h2 {
+    font-size: 32px;
+    line-height: 40px;
+    color: #000;
+    font-weight: 700;
+    text-align: center;
+  }
+  .post-wrapper {
+    width: 80%;
+    height: auto;
+    padding: 16px 32px;
+    margin: auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border: 1px solid black;
+    .input-label {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      label {
+        font-size: 24px;
+        line-height: 32px;
+      }
+      input[type="text"] {
+        height: 30px;
+        width: 100%;
+      }
+      textarea {
+        height: auto;
+      }
+    }
+    button {
+      width: fit-content;
+      padding: 12px 24px;
+      background-color: green;
+      border-radius: 8px;
+      border: none;
+      &:hover {
+        background-color: red;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+    }
+  }
+}

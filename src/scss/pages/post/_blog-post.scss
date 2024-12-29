@@ -1,0 +1,57 @@
+.blog-section {
+  width: 100%;
+  margin: auto;
+  padding: 12px 0;
+  h2 {
+    font-size: 32px;
+    line-height: 26px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .blog-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    .blog-cart {
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border: 1px solid black;
+      padding: 12px;
+      .cart-image {
+        width: 100%;
+        height: 300px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      i {
+        color: grey;
+        span {
+          font-size: 16px;
+          line-height: 24px;
+          font-weight: 400;
+          margin-left: 10px;
+        }
+      }
+
+      h3 {
+        font-size: 32px;
+        line-height: 36px;
+        font-weight: 700;
+
+        &:hover {
+          text-decoration: underline;
+          color: #007000;
+          cursor: pointer;
+        }
+      }
+      &:hover {
+        transform: scale(1.02);
+        transition: 0.3s;
+      }
+    }
+  }
+}

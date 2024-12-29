@@ -34,12 +34,16 @@
       .btn-wrapper {
         display: flex;
         gap: 123px;
+        a {
+          text-decoration: none;
+        }
         .donate-blood-btn {
           padding: 22px 24px;
           background-color: #eb2b2b;
           border-radius: 12px;
           font-size: 24px;
           color: #ffffff;
+          text-decoration: none;
           &:hover {
             background-color: #ffffff;
             transition: 0.3s;

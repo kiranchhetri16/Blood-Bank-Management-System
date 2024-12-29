@@ -1,4 +1,4 @@
-.donor-section {
+.kyc-verification {
   width: 100%;
   margin: auto;
   h2 {
@@ -6,7 +6,7 @@
     line-height: 44px;
     font-weight: 700;
     text-align: center;
-    padding: 12px 0;
+    margin-bottom: 12px;
   }
   .form-container {
     width: 50%;
@@ -32,24 +32,13 @@
           font-weight: 600;
         }
         input[type="text"],
-        input[type="email"],
-        input[type="number"],
-        input[type="date"] {
+        input[type="e-mail"],
+        input[type="number"] {
           height: 30px;
           border-radius: 8px;
           color: #19191bcc;
           padding: 8px 12px;
           border: 1px solid #ec5b00;
-        }
-        select {
-          height: 45px;
-          border-radius: 8px;
-          color: #19191bcc;
-          padding: 8px 12px;
-          border: 1px solid #ec5b00;
-        }
-        option {
-          background-color: transparent;
         }
       }
     }
@@ -64,6 +53,15 @@
           font-size: 16px;
           line-height: 24px;
           font-weight: 600;
+        }
+        .short-note {
+          padding: 6px 12px;
+          font-size: 16px;
+          line-height: 24px;
+          color: #19191bcc;
+          border: 1px solid #ec5b00;
+          border-radius: 8px;
+          background-color: #fff;
         }
       }
     }

@@ -13,6 +13,10 @@ import UserManagement from "./admin/pages/User Management/UserManagement";
 import Dashboard from "./admin/pages/theme/dashboard";
 import DonateBlood from "./pages/bloodbank/DonateBlood";
 import DonorManagement from "./admin/pages/User Management/DonorManagement";
+import RequestBlood from "./pages/bloodbank/RequestBlood";
+import Volunteer from "./pages/bloodbank/Volunteer";
+import BlogPost from "./pages/post/BlogPost";
+import AddPost from "./admin/pages/User Management/AddPost";
 
 function App() {
   return (
@@ -32,6 +36,10 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/donor" element={<DonateBlood />} />
           <Route path="/donor-management" element={<DonorManagement />} />
+          <Route path="/request" element={<RequestBlood />} />
+          <Route path="/volunteer" element={<Volunteer />} />
+          <Route path="/post" element={<BlogPost />} />
+          <Route path="/addpost" element={<AddPost />} />
         </Routes>
       </BrowserRouter>
     </div>
