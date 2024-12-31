@@ -8,12 +8,14 @@
     font-weight: 700;
     text-align: center;
     padding: 12px 0;
+    padding-bottom: 30px;
   }
   .blog-wrapper {
     width: 100%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 24px;
     .cart-wrapper {
       width: 400px;

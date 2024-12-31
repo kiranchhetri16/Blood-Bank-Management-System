@@ -687,9 +687,9 @@ body {
   font-weight: 600;
 }
 .kyc-verification .form-container .primary-data .input-label input[type=text],
-.kyc-verification .form-container .primary-data .input-label input[type=e-mail],
+.kyc-verification .form-container .primary-data .input-label input[type=email],
 .kyc-verification .form-container .primary-data .input-label input[type=number] {
-  height: 30px;
+  height: 40px;
   border-radius: 8px;
   color: rgba(25, 25, 27, 0.8);
   padding: 8px 12px;
@@ -730,6 +730,76 @@ body {
   line-height: 24px;
 }
 
+.add-blood-bank {
+  width: 100%;
+  margin: auto;
+}
+.add-blood-bank h2 {
+  font-size: 40px;
+  line-height: 24px;
+  font-weight: 700;
+  padding: 24px 0;
+  text-align: center;
+}
+.add-blood-bank form {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24p;
+  margin: auto;
+  padding: 12px 24px;
+  border: 1px solid #bf2229;
+  border-radius: 8px;
+}
+.add-blood-bank form .primary-data {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: auto;
+}
+.add-blood-bank form .primary-data .input-label {
+  width: calc(50% - 12px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.add-blood-bank form .primary-data .input-label label {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 500;
+}
+.add-blood-bank form .primary-data .input-label input[type=text],
+.add-blood-bank form .primary-data .input-label input[type=email],
+.add-blood-bank form .primary-data .input-label input[type=number] {
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: 1px solid #bf2229;
+}
+.add-blood-bank form .primary-data .input-label select {
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: 1px solid #bf2229;
+}
+.add-blood-bank form button {
+  width: fit-content;
+  padding: 12px 24px;
+  border-radius: 8px;
+  background-color: red;
+  border: none;
+  font-size: 18px;
+  line-height: 24px;
+  color: white;
+  margin: auto;
+  margin-top: 24px;
+}
+.add-blood-bank form button:hover {
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: #bf2229;
+}
+
 .blog-section {
   width: 100%;
   margin: auto;
@@ -741,12 +811,14 @@ body {
   font-weight: 700;
   text-align: center;
   padding: 12px 0;
+  padding-bottom: 30px;
 }
 .blog-section .blog-wrapper {
   width: 100%;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 24px;
 }
 .blog-section .blog-wrapper .cart-wrapper {
@@ -871,6 +943,64 @@ body {
   padding: 16px 0;
   margin: auto;
   margin: 0 100px;
+}
+.blog-listing-section .related-post {
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 700;
+  text-align: center;
+  padding-top: 32px;
+  padding-bottom: 16px;
+}
+.blog-listing-section .blog-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: auto;
+  justify-content: center;
+}
+.blog-listing-section .blog-wrapper .cart-wrapper {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid #000000;
+  height: auto;
+  padding: 12px;
+  border-radius: 8px;
+}
+.blog-listing-section .blog-wrapper .cart-wrapper .image-cart {
+  height: 200px;
+}
+.blog-listing-section .blog-wrapper .cart-wrapper .related-icon {
+  display: flex;
+  gap: 12px;
+  margin: 0;
+}
+.blog-listing-section .blog-wrapper .cart-wrapper a {
+  text-decoration: none;
+  color: #000000;
+}
+.blog-listing-section .blog-wrapper .cart-wrapper a h3 {
+  font-size: 32px;
+  line-height: 36px;
+  font-weight: 700;
+}
+.blog-listing-section .blog-wrapper .cart-wrapper a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #007000;
+}
+.blog-listing-section .blog-wrapper .cart-wrapper:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+  transition: 0.3s;
+}
+
+.Blog-post {
+  width: 100%;
+  margin: auto;
+  margin-top: 32px;
 }
 
 /*# sourceMappingURL=App.css.map */

@@ -1,57 +1,91 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams, Link } from "react-router-dom";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
 
 const BlogListing = () => {
-  const { id } = useParams();
-  console.log("Fetched id from URL:", id);
-  const [post, setPost] = useState(null);
+  const { id } = useParams(); // Get the current post id from the URL
+  const [posts, setPosts] = useState([]); // Ensure posts is always an array
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!id) {
-      setError("Post ID is missing.");
-      return;
-    }
-    console.log("Fetching post with id:", id);
+    // Fetch all posts from the API
     axios
-      .get(`http://localhost:5000/api/posts/${id}`)
+      .get("http://localhost:5000/api/posts")
       .then((response) => {
-        setPost(response.data);
+        setPosts(response.data); // Set all posts (ensure it's an array)
       })
       .catch((error) => {
-        console.error("Error fetching post:", error);
+        console.error("Error fetching posts:", error);
+        setError("Failed to load posts.");
       });
-  }, [id]);
+  }, []);
 
   if (error) {
     return <p>{error}</p>;
   }
 
-  if (!post) {
-    return <p>Loading...</p>;
+  if (posts.length === 0) {
+    return <p>No posts available.</p>;
+  }
+
+  // Make sure posts is an array before calling .find()
+  const currentPost = Array.isArray(posts)
+    ? posts.find((post) => post.id === parseInt(id))
+    : null;
+
+  if (!currentPost) {
+    return <p>Post not found.</p>;
   }
 
   return (
-    <>
-      <section className="blog-listing-section">
-        <div className="ci-container">
-          <h2>{post.title}</h2>
-          {/* image */}
+    <section className="blog-listing-section">
+      <div className="ci-container">
+        {/* Display the current post */}
+        <div className="current-post">
+          <h2>{currentPost.title}</h2>
+          <div
+            className="post-image"
+            style={{
+              backgroundImage: currentPost.image
+                ? `url(${currentPost.image})`
+                : "none",
+            }}
+          ></div>
           <i>
             <FontAwesomeIcon icon={faCalendar} />
-            <span>
-              {post.created_at
-                ? new Date(post.created_at).toLocaleDateString()
-                : "Unknown Date"}
-            </span>
+            <span>{new Date(currentPost.created_at).toLocaleDateString()}</span>
           </i>
-          <p>{post.content}</p>
+          <p>{currentPost.content}</p>
         </div>
-      </section>
-    </>
+
+        {/* Display other posts */}
+        <h2 className="related-post">Related Post</h2>
+        <div className="blog-wrapper">
+          {posts
+            .filter((post) => post.id !== parseInt(id)) // Exclude the current post from the list
+            .map((post) => (
+              <div className="cart-wrapper" key={post.id}>
+                <div
+                  className="cart-image"
+                  style={{
+                    backgroundImage: post.image ? `url(${post.image})` : "none",
+                  }}
+                ></div>
+                <div className="image-cart"></div>
+                <i className="related-icon">
+                  <FontAwesomeIcon icon={faCalendar} />
+                  <span>{new Date(post.created_at).toLocaleDateString()}</span>
+                </i>
+                <Link to={`/listingpage/${post.id}`}>
+                  <h3>{post.title}</h3>
+                </Link>
+              </div>
+            ))}
+        </div>
+      </div>
+    </section>
   );
 };
 

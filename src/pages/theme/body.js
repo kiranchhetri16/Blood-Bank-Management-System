@@ -2,6 +2,7 @@ import React from "react";
 import backgroundImage from "../../Assest/image/bloodimg.jpg";
 import whyWeBlood from "../../Assest/image/why-we-blood.jpg";
 import { Link } from "react-router-dom";
+import BlogPost from "../post/BlogPost";
 
 const Outerbody = () => {
   const sectionStyle = {
@@ -79,6 +80,9 @@ const Outerbody = () => {
           <div className="what-wrapper"></div>
         </div>
       </sectiion>
+      <section className="Blog-post">
+        <BlogPost />
+      </section>
     </>
   );
 };

@@ -1,0 +1,72 @@
+.add-blood-bank {
+  width: 100%;
+  margin: auto;
+  h2 {
+    font-size: 40px;
+    line-height: 24px;
+    font-weight: 700;
+    padding: 24px 0;
+    text-align: center;
+  }
+  form {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24p;
+    margin: auto;
+    padding: 12px 24px;
+    border: 1px solid #bf2229;
+    border-radius: 8px;
+
+    .primary-data {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin: auto;
+      .input-label {
+        width: calc(50% - 12px);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        // margin: auto;
+        label {
+          font-size: 18px;
+          line-height: 24px;
+          font-weight: 500;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+          // height: 30px;
+          border-radius: 8px;
+          padding: 12px 24px;
+          font-size: 16px;
+          border: 1px solid #bf2229;
+        }
+        select {
+          border-radius: 8px;
+          padding: 12px 24px;
+          font-size: 16px;
+          border: 1px solid #bf2229;
+        }
+      }
+    }
+    button {
+      width: fit-content;
+      padding: 12px 24px;
+      border-radius: 8px;
+      background-color: red;
+      border: none;
+      font-size: 18px;
+      line-height: 24px;
+      color: #ffff;
+      margin: auto;
+      margin-top: 24px;
+      &:hover {
+        cursor: pointer;
+        transition: 0.3s;
+        background-color: #bf2229;
+      }
+    }
+  }
+}
