@@ -20,13 +20,14 @@ import AddPost from "./admin/pages/User Management/AddPost";
 import BlogListing from "./pages/post/BlogListing";
 import AddBank from "./admin/pages/bloodbank/AddBank";
 import ManageBloodBank from "./admin/pages/bloodbank/ManageBloodBank";
+import AboutUser from "./pages/user/AboutUser";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<PrivateRoute component={Outerbody} />}>
+          <Route path="/" element={<PrivateRoute component={Layout} />}>
             {/* <Route path="/body" element={<Outerbody />} /> */}
             {/* <Route path="/footer" element={<Footer />} /> */}
           </Route>
@@ -46,6 +47,7 @@ function App() {
           <Route path="/listingpage/:id" element={<BlogListing />} />
           <Route path="/addbank" element={<AddBank />} />
           <Route path="/manageblood" element={<ManageBloodBank />} />
+          <Route path="/aboutuser" element={<AboutUser />} />
         </Routes>
       </BrowserRouter>
     </div>

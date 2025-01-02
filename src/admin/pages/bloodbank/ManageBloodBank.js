@@ -58,41 +58,43 @@ const ManageBloodBank = () => {
 
   return (
     <section className="manage-bloodbank">
-      <div className="container">
-        <h1>Blood Banks</h1>
-        <form onSubmit={handleSearch} style={{ marginBottom: "20px" }}>
-          <input
-            type="text"
-            name="state"
-            placeholder="Search by State"
-            value={searchFields.state}
-            onChange={handleFieldChange}
-            style={{ marginRight: "10px" }}
-          />
-          <input
-            type="text"
-            name="district"
-            placeholder="Search by District"
-            value={searchFields.district}
-            onChange={handleFieldChange}
-            style={{ marginRight: "10px" }}
-          />
-          <input
-            type="text"
-            name="bloodtype"
-            placeholder="Search by Blood Type"
-            value={searchFields.bloodtype}
-            onChange={handleFieldChange}
-            style={{ marginRight: "10px" }}
-          />
-          <input
-            type="text"
-            name="blood"
-            placeholder="Search by Blood"
-            value={searchFields.blood}
-            onChange={handleFieldChange}
-            style={{ marginRight: "10px" }}
-          />
+      <div className="ci-container">
+        <h2>Blood Stock Management</h2>
+        <form onSubmit={handleSearch}>
+          <h3>Search Blood Stock</h3>
+          <div className="primary-form">
+            <input
+              type="text"
+              name="state"
+              placeholder="Search by State"
+              value={searchFields.state}
+              onChange={handleFieldChange}
+              style={{ marginRight: "10px" }}
+            />
+            <input
+              type="text"
+              name="district"
+              placeholder="Search by District"
+              value={searchFields.district}
+              onChange={handleFieldChange}
+              style={{ marginRight: "10px" }}
+            />
+            <input
+              type="text"
+              name="bloodtype"
+              placeholder="Search by Blood Type"
+              value={searchFields.bloodtype}
+              onChange={handleFieldChange}
+            />
+            <input
+              type="text"
+              name="blood"
+              placeholder="Search by Blood"
+              value={searchFields.blood}
+              onChange={handleFieldChange}
+              style={{ marginRight: "10px" }}
+            />
+          </div>
           <button type="submit">Search</button>
         </form>
         {loading ? (

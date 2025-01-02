@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 import VirinchiLogo from "../../Assest/image/virinchi-logo.png";
 // import backgroundImage from "../../Assest/image/bloodimg.jpg";
@@ -12,13 +12,18 @@ const Header = () => {
   const toggleDropdown = () => {
     setDropdownvisible(!dropdownvisible);
   };
-  // const sectionStyle = {
-  //   backgroundImage: `url(${backgroundImage})`,
-  //   backgroundSize: "cover",
-  //   backgroundRepeat: "no-repeat",
-  //   height: "668px",
-  //   marginTop: 0,
-  // };
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const toggleProfileDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
+
+  const handleLogout = () => {
+    if (localStorage.getItem("isLogin")) {
+      localStorage.removeItem("isLogin");
+      alert("Logging out...");
+    }
+  };
   return (
     <>
       <header>
@@ -87,34 +92,65 @@ const Header = () => {
                 <Link className="signin-btn" to="/login">
                   Sign In
                 </Link>
-                <Link className="contact-btn">
-                  Contact
-                  <FontAwesomeIcon className="rightarrow" icon={faArrowRight} />
-                </Link>
+                <div className="profile">
+                  <FontAwesomeIcon
+                    icon={faCircleUser}
+                    onClick={toggleProfileDropdown}
+                  />
+                  {dropdownVisible && (
+                    <ul
+                      style={{
+                        position: "absolute",
+                        top: "50px",
+                        right: "40px",
+                        backgroundColor: "#fff",
+                        border: "1px solid #ccc",
+                        borderRadius: "4px",
+                        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                        listStyle: "none",
+                        padding: "10px",
+                        width: "100px",
+                        zIndex: 1000,
+                      }}
+                    >
+                      <Link to="/aboutuser">
+                        {" "}
+                        <li
+                          style={{
+                            padding: "8px 12px",
+                            fontSize: "16px",
+                            color: "#000",
+                            cursor: "pointer",
+                            textAlign: "center",
+                          }}
+                          onClick={() => alert("User Profile")}
+                        >
+                          User
+                        </li>
+                      </Link>
+                      <Link to="/login">
+                        {" "}
+                        <li
+                          style={{
+                            padding: "8px 12px",
+                            color: "#000",
+                            fontSize: "16px",
+                            cursor: "pointer",
+                            borderTop: "1px solid #ccc",
+                            textAlign: "center",
+                          }}
+                          onClick={handleLogout}
+                        >
+                          Logout
+                        </li>
+                      </Link>
+                    </ul>
+                  )}
+                </div>
               </div>
             </nav>
           </div>
         </div>
-        {/* <section className="main-header">
-          <div style={sectionStyle}>
-            <div className="transparent">
-              <div className="ci-container">
-                <div className="header-title">
-                  <h2>Eliminate blood scarcity in Nepal</h2>
-                  <p>
-                    Donating your time to make an impact, your blood to save
-                    lives or your money to create a holistic blood management
-                    cycle.
-                  </p>
-                  <div className="btn-wrapper">
-                    <div className="donate-blood-btn">Donate Blood</div>
-                    <div className="request-blood-btn">Request Blood</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> */}
       </header>
     </>
   );

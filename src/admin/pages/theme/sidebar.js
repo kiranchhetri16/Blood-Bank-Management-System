@@ -7,6 +7,7 @@ import {
   faPeopleCarryBox,
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 const SideBar = () => {
   const Dashboard = [{ id: 1, name: "Dashboard", icon: faHouse }];
 
@@ -42,10 +43,13 @@ const SideBar = () => {
             </div>
           ))}
           {UserManagement.map((user) => (
-            <div key={user.id} className="user-management">
-              <FontAwesomeIcon icon={user.icon} className="icon" />
-              <p>{user.name}</p>
-            </div>
+            <Link to="/user-management">
+              {" "}
+              <div key={user.id} className="user-management">
+                <FontAwesomeIcon icon={user.icon} className="icon" />
+                <p>{user.name}</p>
+              </div>
+            </Link>
           ))}
           {VolunteerManagement.map((user) => (
             <div key={user.id} className="volunteer">
@@ -54,10 +58,12 @@ const SideBar = () => {
             </div>
           ))}
           {AddBloodBank.map((user) => (
-            <div key={user.id} className="add-bank">
-              <FontAwesomeIcon icon={user.icon} className="icon" />
-              <p>{user.name}</p>
-            </div>
+            <Link to="/addbank">
+              <div key={user.id} className="add-bank">
+                <FontAwesomeIcon icon={user.icon} className="icon" />
+                <p>{user.name}</p>
+              </div>
+            </Link>
           ))}
         </div>
       </section>

@@ -1,0 +1,138 @@
+.manage-bloodbank {
+  width: 100%;
+  margin: auto;
+
+  h2 {
+    font-size: 40px;
+    line-height: 44px;
+    font-weight: 700;
+    padding: 24px 0;
+    text-align: center;
+  }
+  form {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+      font-size: 24px;
+      background-color: #bf2229;
+      color: #fff;
+      padding: 12px 24px;
+      margin: 0 127px;
+      border-radius: 8px 8px 0px 0;
+    }
+    .primary-form {
+      width: fit-content;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin: auto;
+      border: 1px solid black;
+      padding: 12px 24px;
+      border-radius: 0px 0px 8px 8px;
+      input[type="text"] {
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 4px;
+        border: none;
+        outline: 1px solid black;
+      }
+    }
+    button {
+      padding: 12px 24px;
+      width: fit-content;
+      margin: auto;
+      margin-top: 24px;
+      background-color: red;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      border-radius: 8px;
+      &:hover {
+        cursor: pointer;
+        background-color: #bf2229;
+        transition: 0.3s;
+      }
+    }
+  }
+
+  // table {
+  //   width: 100%;
+  //   border-collapse: collapse;
+  //   margin-top: 24px;
+  //   font-size: 16px;
+  //   text-align: left;
+
+  //   th {
+  //     background-color: #bf2229;
+  //     padding: 12px;
+  //     color: #fff;
+  //     td {
+  //       padding: 12px;
+  //       border: 1px solid #ddd;
+  //     }
+  //   }
+  //   tbody tr:hover {
+  //     background-color: #f1f1f1;
+  //   }
+  // }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+
+    th,
+    td {
+      padding: 12px;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #bf2229;
+      font-weight: bold;
+    }
+
+    tbody {
+      tr {
+        &:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+
+        &:hover {
+          background-color: #f1f1f1;
+        }
+      }
+    }
+
+    .details {
+      font-size: 14px;
+      color: #666;
+      margin-top: 5px;
+
+      span {
+        display: block;
+      }
+    }
+
+    td {
+      vertical-align: top;
+
+      div {
+        margin-top: 5px;
+        font-size: 14px;
+        color: #444;
+      }
+    }
+
+    caption {
+      caption-side: top;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  }
+}

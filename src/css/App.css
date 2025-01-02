@@ -92,7 +92,7 @@ header .header .nav-wrapper .logo-wrapper ul li a:hover {
 }
 header .header .nav-wrapper .btn-wrapper {
   display: flex;
-  gap: 100px;
+  gap: 80px;
   align-items: center;
 }
 header .header .nav-wrapper .btn-wrapper .signin-btn {
@@ -104,31 +104,15 @@ header .header .nav-wrapper .btn-wrapper .signin-btn {
   font-weight: 600;
   text-decoration: none;
   border-radius: 8px;
-  color: #000000;
+  color: red;
 }
-header .header .nav-wrapper .btn-wrapper .contact-btn {
-  width: fit-content;
-  padding: 10px 20px;
-  background-color: #ffffff;
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: 600;
-  color: #000000;
-  text-decoration: none;
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  border-radius: 8px;
-}
-header .header .nav-wrapper .btn-wrapper .contact-btn .rightarrow {
-  color: #000000;
-  font-size: 16px;
-  line-height: 24px;
-}
-header .header .nav-wrapper .btn-wrapper .contact-btn:hover {
+header .header .nav-wrapper .btn-wrapper .profile {
+  font-size: 32px;
+  color: #fff;
   cursor: pointer;
-  background-color: hwb(234 31% 5%);
-  transition: 0.3s;
+}
+header .header .nav-wrapper .btn-wrapper .profile a {
+  text-decoration: none;
 }
 
 .footer {
@@ -800,6 +784,109 @@ body {
   background-color: #bf2229;
 }
 
+.manage-bloodbank {
+  width: 100%;
+  margin: auto;
+}
+.manage-bloodbank h2 {
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 700;
+  padding: 24px 0;
+  text-align: center;
+}
+.manage-bloodbank form {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+.manage-bloodbank form h3 {
+  font-size: 24px;
+  background-color: #bf2229;
+  color: #fff;
+  padding: 12px 24px;
+  margin: 0 127px;
+  border-radius: 8px 8px 0px 0;
+}
+.manage-bloodbank form .primary-form {
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin: auto;
+  border: 1px solid black;
+  padding: 12px 24px;
+  border-radius: 0px 0px 8px 8px;
+}
+.manage-bloodbank form .primary-form input[type=text] {
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: none;
+  outline: 1px solid black;
+}
+.manage-bloodbank form button {
+  padding: 12px 24px;
+  width: fit-content;
+  margin: auto;
+  margin-top: 24px;
+  background-color: red;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 8px;
+}
+.manage-bloodbank form button:hover {
+  cursor: pointer;
+  background-color: #bf2229;
+  transition: 0.3s;
+}
+.manage-bloodbank table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+}
+.manage-bloodbank table th,
+.manage-bloodbank table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+.manage-bloodbank table th {
+  background-color: #bf2229;
+  font-weight: bold;
+}
+.manage-bloodbank table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.manage-bloodbank table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+.manage-bloodbank table .details {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}
+.manage-bloodbank table .details span {
+  display: block;
+}
+.manage-bloodbank table td {
+  vertical-align: top;
+}
+.manage-bloodbank table td div {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #444;
+}
+.manage-bloodbank table caption {
+  caption-side: top;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 .blog-section {
   width: 100%;
   margin: auto;
@@ -1001,6 +1088,58 @@ body {
   width: 100%;
   margin: auto;
   margin-top: 32px;
+}
+
+.about-user {
+  width: 100%;
+  margin: auto;
+}
+.about-user h2 {
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 700;
+  text-align: center;
+  padding: 24px 0;
+}
+.about-user .user-cart {
+  width: 300px;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  padding: 24px;
+  border-radius: 8px;
+  margin: auto;
+}
+.about-user .user-cart .user-profile {
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+.about-user .user-cart .user-profile .pro {
+  height: 50%;
+}
+.about-user .user-cart h3 {
+  font-size: 24px;
+  line-height: 32px;
+}
+.about-user .user-cart p {
+  font-size: 18px;
+  line-height: 24px;
+}
+.about-user .user-cart .preview-btn {
+  width: fit-content;
+  padding: 12px 24px;
+  background-color: red;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px;
+}
+.about-user .user-cart .preview-btn:hover {
+  cursor: pointer;
+  background-color: #eb2b2b;
+  transition: 0.3s;
 }
 
 /*# sourceMappingURL=App.css.map */

@@ -42,7 +42,7 @@ header {
       }
       .btn-wrapper {
         display: flex;
-        gap: 100px;
+        gap: 80px;
         align-items: center;
         .signin-btn {
           width: fit-content;
@@ -53,30 +53,14 @@ header {
           font-weight: 600;
           text-decoration: none;
           border-radius: 8px;
-          color: #000000;
+          color: red;
         }
-        .contact-btn {
-          width: fit-content;
-          padding: 10px 20px;
-          background-color: #ffffff;
-          font-size: 18px;
-          line-height: 24px;
-          font-weight: 600;
-          color: #000000;
-          text-decoration: none;
-          display: flex;
-          gap: 5px;
-          align-items: center;
-          border-radius: 8px;
-          .rightarrow {
-            color: #000000;
-            font-size: 16px;
-            line-height: 24px;
-          }
-          &:hover {
-            cursor: pointer;
-            background-color: hwb(234 31% 5%);
-            transition: 0.3s;
+        .profile {
+          font-size: 32px;
+          color: #fff;
+          cursor: pointer;
+          a {
+            text-decoration: none;
           }
         }
       }

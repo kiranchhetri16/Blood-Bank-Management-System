@@ -59,7 +59,7 @@ const DonateBlood = () => {
     <div>
       <section className="donor-section">
         <h2>Donate Blood and Save the Life of Others</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} enctype="multipart/form-data">
           <div className="form-container">
             <div className="primary-data">
               {/* Name */}

@@ -6,11 +6,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
-
+  const [user, setUser] = useState("");
   useEffect(() => {
     const isLogin = localStorage.getItem("isLogin");
     if (isLogin === "1") {
-      navigate("/body");
+      navigate("/Layout");
     }
   }, []);
 
@@ -28,7 +28,15 @@ const Login = () => {
       if (data.success) {
         setMessage("Login successful!");
         localStorage.setItem("isLogin", "1");
-        navigate("/body");
+        localStorage.setItem("name", name);
+        localStorage.setItem("email", data.email);
+
+        const storedUser = localStorage.getItem("user");
+        console.log("Stored User:", storedUser); // Log the user data
+        if (storedUser) {
+          setUser(JSON.parse(storedUser));
+        }
+        navigate("/");
       } else {
         setMessage("Invalid credentials");
       }
