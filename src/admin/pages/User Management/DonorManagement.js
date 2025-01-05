@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const DonorManagement = () => {
-  const [data, setData] = useState([]);
+  const [donors, setDonors] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -12,97 +12,101 @@ const DonorManagement = () => {
     "Name",
     "Age",
     "E-mail",
-    "Phone-no",
+    "Phone No",
     "Blood Type",
     "Location",
   ];
 
   useEffect(() => {
-    fetchDonor(page);
+    fetchDonors(page);
   }, [page]);
 
-  const fetchDonor = async (page) => {
+  const fetchDonors = async (currentPage) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/availabledonor?page=${page}&limit=5`
+        `http://localhost:5000/availabledonors?page=${currentPage}&limit=5`
       );
-      setData(response.data); // Ensure 'donors' is the correct key from the backend response
-      setTotalPages(response.data.totalPages);
+
+      if (response.status === 200) {
+        setDonors(response.data.donors); // Backend should return 'donors' and 'totalPages'
+        setTotalPages(response.data.totalPages);
+      } else {
+        console.error("Failed to fetch donors");
+      }
     } catch (error) {
       console.error("Error fetching donors:", error);
     }
   };
 
-  const handleNextPage = () => {
-    if (page < totalPages) {
-      setPage(page + 1);
-    }
-  };
-
-  const handlePrevPage = () => {
-    if (page > 1) {
-      setPage(page - 1);
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setPage(newPage);
     }
   };
 
   return (
-    <>
-      <section className="available-donor-section">
-        <div className="ci-container">
-          <div className="table-container">
-            <table>
-              <thead>
-                <tr>
-                  {TableHeader.map((header, index) => (
-                    <th key={index}>{header}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((item, index) => (
-                  <tr key={item.id}>
+    <section className="available-donor-section">
+      <div className="ci-container">
+        <div className="table-container">
+          <table>
+            <thead>
+              <tr>
+                {TableHeader.map((header, index) => (
+                  <th key={index}>{header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {donors.length > 0 ? (
+                donors.map((donor, index) => (
+                  <tr key={donor.id}>
                     <td>{(page - 1) * 5 + index + 1}</td>
                     <td>
-                      <div className="cell-contain">
-                        <img
-                          src={`http://localhost:5000/uploads/${item.profile}`}
-                          alt={item.name || "Donor Profile"}
-                          style={{
-                            width: "50px",
-                            height: "50px",
-                            borderRadius: "50%",
-                          }}
-                        />
-                      </div>
+                      <img
+                        src={`http://localhost:5000${donor.profile}`}
+                        alt={donor.name || "Donor Profile"}
+                        style={{
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "50%",
+                        }}
+                      />
                     </td>
-                    <td>{item.name}</td>
-                    <td>{item.age}</td>
-                    <td>{item.email}</td>
-                    <td>{item.phone}</td>
-                    <td>{item.bloodtype}</td>
-                    <td>{item.location}</td>
+                    <td>{donor.name}</td>
+                    <td>{donor.age}</td>
+                    <td>{donor.email}</td>
+                    <td>{donor.phone}</td>
+                    <td>{donor.bloodtype}</td>
+                    <td>{donor.location}</td>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-            <div className="pagination">
-              <button disabled={page <= 1} onClick={() => setPage(page - 1)}>
-                Previous
-              </button>
-              <span>
-                Page {page} of {totalPages}
-              </span>
-              <button
-                disabled={page >= totalPages}
-                onClick={() => setPage(page + 1)}
-              >
-                Next
-              </button>
-            </div>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={8}>No donors found</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+          <div className="pagination">
+            <button
+              disabled={page <= 1}
+              onClick={() => handlePageChange(page - 1)}
+            >
+              Previous
+            </button>
+            <span>
+              Page {page} of {totalPages}
+            </span>
+            <button
+              disabled={page >= totalPages}
+              onClick={() => handlePageChange(page + 1)}
+            >
+              Next
+            </button>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 

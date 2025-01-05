@@ -10,7 +10,7 @@ const Login = () => {
   useEffect(() => {
     const isLogin = localStorage.getItem("isLogin");
     if (isLogin === "1") {
-      navigate("/Layout");
+      navigate("/login");
     }
   }, []);
 

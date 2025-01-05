@@ -11,32 +11,34 @@ const DonateBlood = () => {
     phone: "",
     bloodtype: "",
     location: "",
-    profile: null,
+    profile: null, // File field
   });
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     setFormData({
       ...formData,
-      [name]: files ? files[0] : value,
+      [name]: files ? files[0] : value, // Handles both file and text inputs
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data Submitted: ", formData);
 
-    const formDataCopy = { ...formData };
-    formDataCopy.date = new Date().toISOString(); // Add current date
+    if (!formData.profile) {
+      alert("Please upload a profile picture.");
+      return;
+    }
+
+    const formDataToSend = new FormData();
+    Object.keys(formData).forEach((key) => {
+      formDataToSend.append(key, formData[key]);
+    });
 
     try {
       const response = await fetch("http://localhost:5000/availabledonors", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formDataCopy),
+        body: formDataToSend,
       });
 
       const data = await response.json();
@@ -45,61 +47,56 @@ const DonateBlood = () => {
         alert("Form submitted successfully!");
         console.log(data);
       } else {
-        alert("Failed to submit form");
+        alert(`Failed to submit form: ${data.message || "Unknown error"}`);
         console.error(data);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("An error occurred while submitting the form");
+      alert("An error occurred while submitting the form.");
     }
   };
 
   const bloodGroupOptions = ["A+", "O+", "B+", "AB+", "A-", "O-", "B-", "AB-"];
+
   return (
     <div>
       <section className="donor-section">
         <h2>Donate Blood and Save the Life of Others</h2>
-        <form onSubmit={handleSubmit} enctype="multipart/form-data">
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           <div className="form-container">
             <div className="primary-data">
-              {/* Name */}
               <VITextInput
                 type="text"
                 title="Name"
                 name="name"
                 handleChange={handleChange}
                 value={formData.name}
-                placeholder="Enter you Name"
+                placeholder="Enter your Name"
               />
-              {/* Age */}
               <VITextInput
                 type="number"
                 title="Age"
                 name="age"
                 handleChange={handleChange}
                 value={formData.age}
-                placeholder="Enter you Age"
+                placeholder="Enter your Age"
               />
-
-              {/* Email */}
               <VITextInput
                 type="email"
                 title="E-mail"
                 name="email"
                 handleChange={handleChange}
                 value={formData.email}
-                placeholder="Enter you e-mail"
+                placeholder="Enter your E-mail"
               />
-              {/* Phone Number */}
               <VITextInput
                 type="number"
                 title="Phone Number"
                 name="phone"
                 handleChange={handleChange}
                 value={formData.phone}
-                placeholder="Enter you e-mail"
+                placeholder="Enter your Phone Number"
               />
-              {/* Blood Group */}
               <ViSelectInput
                 title="Blood Group"
                 name="bloodtype"
@@ -107,20 +104,20 @@ const DonateBlood = () => {
                 handleChange={handleChange}
                 options={bloodGroupOptions}
               />
-              {/* Location */}
               <VITextInput
                 type="text"
                 title="Location"
                 name="location"
                 value={formData.location}
                 handleChange={handleChange}
+                placeholder="Enter your Location"
               />
-
-              {/* Upload Picture */}
-              <ViFileInput label="File Upload" />
+              <ViFileInput
+                label="Profile Picture"
+                name="profile"
+                handleChange={handleChange}
+              />
             </div>
-
-            {/* Submit Button */}
             <button type="submit">Submit</button>
           </div>
         </form>
