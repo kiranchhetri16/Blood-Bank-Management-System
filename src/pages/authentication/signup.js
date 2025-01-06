@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -6,7 +7,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
   const [message, setMessage] = useState("");
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Name:", name);
@@ -23,6 +24,7 @@ const Signup = () => {
       });
       if (response.ok) {
         setMessage("Signup successful!");
+        navigate("/login");
       } else {
         setMessage("Signup failed!");
       }
@@ -33,7 +35,7 @@ const Signup = () => {
   };
   return (
     <>
-      <form className="form-test" onSubmit={handleSubmit}>
+      <form className="form-test-signup" onSubmit={handleSubmit}>
         <h1>Signup</h1>
         <div className="formgroup">
           <label htmlFor="name">Username</label>
@@ -77,6 +79,9 @@ const Signup = () => {
           <button type="submit">Signup</button>
           {message && <p>{message}</p>}
         </div>
+        <p>
+          Already have an accout? <Link to={"/login"}> Log In</Link>
+        </p>
       </form>
     </>
   );

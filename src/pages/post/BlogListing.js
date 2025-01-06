@@ -49,8 +49,10 @@ const BlogListing = () => {
             className="post-image"
             style={{
               backgroundImage: currentPost.image
-                ? `url(${currentPost.image})`
+                ? `url(http://localhost:5000${currentPost.image})`
                 : "none",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
           ></div>
           <i>
@@ -70,7 +72,11 @@ const BlogListing = () => {
                 <div
                   className="cart-image"
                   style={{
-                    backgroundImage: post.image ? `url(${post.image})` : "none",
+                    backgroundImage: post.image
+                      ? `url(http://localhost:5000${post.image})`
+                      : "none",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
                   }}
                 ></div>
                 <div className="image-cart"></div>

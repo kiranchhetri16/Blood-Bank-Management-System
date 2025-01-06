@@ -6,6 +6,7 @@ import {
   faUsers,
   faPeopleCarryBox,
   faPlus,
+  faListCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 const SideBar = () => {
@@ -30,6 +31,13 @@ const SideBar = () => {
       id: 4,
       icon: faPlus,
       name: "Add Blood Bank",
+    },
+  ];
+  const DonorManagement = [
+    {
+      id: 4,
+      icon: faListCheck,
+      name: "Donor Management",
     },
   ];
   return (
@@ -61,6 +69,15 @@ const SideBar = () => {
             <Link to="/addbank">
               <div key={user.id} className="add-bank">
                 <FontAwesomeIcon icon={user.icon} className="icon" />
+                <p>{user.name}</p>
+              </div>
+            </Link>
+          ))}
+          {DonorManagement.map((user) => (
+            <Link to={"/donor-management"}>
+              {" "}
+              <div key={user.id} className="donor-manage">
+                <FontAwesomeIcon icon={user.faListCheck} className="icon" />
                 <p>{user.name}</p>
               </div>
             </Link>

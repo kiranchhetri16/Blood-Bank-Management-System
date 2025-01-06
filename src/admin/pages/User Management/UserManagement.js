@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const UserManagement = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [deletingUserId, setDeletingUserId] = useState(null); // Track the userId being deleted
 
   const tableHeaders = [
     "SN",
@@ -25,9 +27,16 @@ const UserManagement = () => {
         `http://localhost:5000/data?page=${page}&limit=5`
       );
       setData(response.data);
+      console.log(response.data);
       setTotalPages(response.data.totalPages);
     } catch (error) {
       console.error("Error fetching users:", error);
+    }
+  };
+
+  const handleDeleteClick = (userId) => {
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      setDeletingUserId(userId);
     }
   };
 
@@ -54,23 +63,50 @@ const UserManagement = () => {
                     <td>{item.password}</td>
                     <td>{item.address}</td>
                     <td>
-                      <button className="action-btn edit-btn">Edit</button>
-                      <button className="action-btn delete-btn">Delete</button>
+                      <div className="action-btn">
+                        <Link to={`/edit/${item.id}`} className="edit-btn">
+                          Edit
+                        </Link>
+
+                        <button
+                          onClick={() => handleDeleteClick(item.id)}
+                          className="delete-btn"
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <div className="pagination">
-              <button disabled={page <= 1} onClick={() => setPage(page - 1)}>
+            <div
+              className="pagination"
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-between",
+                marginTop: "20px",
+              }}
+            >
+              <button
+                disabled={page <= 1}
+                onClick={() => setPage(page - 1)}
+                style={{
+                  padding: "5px",
+                  borderRadius: "6px",
+                  cursor: "pointer",
+                }}
+              >
                 Previous
               </button>
               <span>
-                Page {page} of {totalPages}
+                Page {page} {totalPages}
               </span>
               <button
                 disabled={page >= totalPages}
                 onClick={() => setPage(page + 1)}
+                style={{ padding: "5px", cursor: "pointer" }}
               >
                 Next
               </button>

@@ -70,9 +70,11 @@ const Login = () => {
         />
       </div>
       <button type="submit">Login</button>
-      <Link className="account-not-available" to="/signup">
-        <p>Don't have an account?</p>
-      </Link>
+
+      <p>
+        Don't have an account?<Link to={"/signup"}> Register</Link>
+      </p>
+
       {message && <p>{message}</p>}
     </form>
   );

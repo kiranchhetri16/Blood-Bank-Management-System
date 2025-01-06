@@ -21,6 +21,9 @@ import BlogListing from "./pages/post/BlogListing";
 import AddBank from "./admin/pages/bloodbank/AddBank";
 import ManageBloodBank from "./admin/pages/bloodbank/ManageBloodBank";
 import AboutUser from "./pages/user/AboutUser";
+import UserEdit from "./admin/pages/User Management/EditUser";
+import UserDelete from "./admin/pages/User Management/UserDelete";
+import UserBarChat from "./admin/pages/components/UserBarChat";
 
 function App() {
   return (
@@ -48,6 +51,9 @@ function App() {
           <Route path="/addbank" element={<AddBank />} />
           <Route path="/manageblood" element={<ManageBloodBank />} />
           <Route path="/aboutuser" element={<AboutUser />} />
+          <Route path="/edit/:userId" element={<UserEdit />} />
+          <Route path="/delete/:userId" element={<UserDelete />} />
+          <Route path="/barchat" element={<UserBarChat />} />
         </Routes>
       </BrowserRouter>
     </div>
