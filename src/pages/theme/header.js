@@ -1,22 +1,19 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser, faBars } from "@fortawesome/free-solid-svg-icons";
 
-import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
-
-import VirinchiLogo from "../../Assest/image/virinchi-logo.png";
-// import backgroundImage from "../../Assest/image/bloodimg.jpg";
+import Logo from "../../Assest/image/refined-logo.png";
 
 import { useState } from "react";
+
 const Header = () => {
   const [dropdownvisible, setDropdownvisible] = useState(false);
-  const toggleDropdown = () => {
-    setDropdownvisible(!dropdownvisible);
-  };
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(false);
 
-  const toggleProfileDropdown = () => {
-    setDropdownVisible(!dropdownVisible);
-  };
+  const toggleDropdown = () => setDropdownvisible(!dropdownvisible);
+  const toggleProfileDropdown = () => setDropdownVisible(!dropdownVisible);
+  const handleShowNavbar = () => setShowNavbar(!showNavbar);
 
   const handleLogout = () => {
     if (localStorage.getItem("isLogin")) {
@@ -24,6 +21,7 @@ const Header = () => {
       alert("Logging out...");
     }
   };
+
   return (
     <>
       <header>
@@ -32,24 +30,24 @@ const Header = () => {
             <nav className="nav-wrapper">
               <div className="logo-wrapper">
                 <div className="logo">
-                  <img src={VirinchiLogo} alt="" />
+                  <img src={Logo} alt="Logo" />
                 </div>
-                <ul>
+                <ul className={showNavbar ? "active" : ""}>
                   <li>
-                    <Link>Why We</Link>
+                    <Link to="#">Why We</Link>
                   </li>
                   <li>
-                    <Link>Our Work</Link>
+                    <Link to="#">Our Work</Link>
                   </li>
                   <li>
-                    <Link>About Us</Link>
+                    <Link to="#">About Us</Link>
                   </li>
                   <li
                     onMouseEnter={toggleDropdown}
                     onMouseLeave={toggleDropdown}
                     style={{ position: "relative" }}
                   >
-                    <Link>Get Involved</Link>
+                    <Link to="#">Get Involved</Link>
                     {dropdownvisible && (
                       <ul
                         style={{
@@ -65,18 +63,17 @@ const Header = () => {
                           gap: "10px",
                           textDecoration: "none",
                           width: "120px",
-                          // marginTop: "16px",
                           transition: "0.3s",
                         }}
                       >
                         <li>
-                          <Link to="/get-involved/volunteers">Volunteers</Link>
+                          <Link to="/volunteer">Volunteers</Link>
                         </li>
                         <li>
-                          <Link to="/get-involved/search-for">Search For</Link>
+                          <Link to="/manageblood">Search For</Link>
                         </li>
                         <li>
-                          <Link to="/get-involved/donate-blood">
+                          <Link to="/donor">
                             Donate Blood
                           </Link>
                         </li>
@@ -84,7 +81,10 @@ const Header = () => {
                     )}
                   </li>
                   <li>
-                    <Link>Resources</Link>
+                    <Link to="#">Resources</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Blogs</Link>
                   </li>
                 </ul>
               </div>
@@ -114,7 +114,6 @@ const Header = () => {
                       }}
                     >
                       <Link to="/aboutuser">
-                        {" "}
                         <li
                           style={{
                             padding: "8px 12px",
@@ -129,7 +128,6 @@ const Header = () => {
                         </li>
                       </Link>
                       <Link to="/login">
-                        {" "}
                         <li
                           style={{
                             padding: "8px 12px",
@@ -147,6 +145,9 @@ const Header = () => {
                     </ul>
                   )}
                 </div>
+              </div>
+              <div className="toggle-btn" onClick={handleShowNavbar}>
+                <FontAwesomeIcon icon={faBars} />
               </div>
             </nav>
           </div>

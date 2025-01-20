@@ -1,0 +1,112 @@
+.edit-post-section {
+  padding: 2rem;
+  background-color: #f9f9f9;
+
+  .ci-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        label {
+          font-size: 1rem;
+          font-weight: bold;
+          color: #444;
+        }
+
+        input,
+        textarea {
+          padding: 0.8rem;
+          font-size: 16px;
+          line-height: 18px;
+          letter-spacing: -0.172px;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          background-color: #fdfdfd;
+          transition: border-color 0.2s ease;
+
+          &:focus {
+            border-color: red;
+            outline: none;
+          }
+        }
+
+        textarea {
+          resize: none;
+        }
+      }
+
+      button {
+        padding: 0.8rem 1.5rem;
+        font-size: 16px;
+        line-height: 18px;
+        color: #fff;
+        background-color: red;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background-color: #0056b3;
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+}
+
+// Media Query for Responsiveness
+@media (max-width: 768px) {
+  .edit-post-section {
+    padding: 1rem;
+
+    .ci-container {
+      padding: 1.5rem;
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      form {
+        .form-group {
+          label {
+            font-size: 0.9rem;
+          }
+
+          input[type="text"],
+          input[type="file"],
+          textarea {
+            font-size: 16px;
+            line-height: 18px;
+            width: 100%;
+          }
+        }
+
+        button {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}

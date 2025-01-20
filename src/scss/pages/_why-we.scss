@@ -1,6 +1,10 @@
 .Why-we {
   width: 100%;
   margin: auto;
+  margin-top: 64px;
+  @media screen and (max-width: 1024px) {
+    margin-top: 32px;
+  }
   .whywe-wrapper {
     display: flex;
     gap: 40px;
@@ -22,12 +26,110 @@
       h3 {
         font-size: 32px;
         line-height: 40px;
-        color: #231f20;
+        color: red;
+        position: relative;
+        &:before {
+          position: absolute;
+          content: "";
+          height: 4px;
+          width: 180px;
+          background: red;
+          bottom: -4px;
+          border-radius: 2px;
+        }
       }
       p {
         font-size: 16px;
         line-height: 24px;
         color: #231f20;
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .whywe-wrapper {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      .image-part {
+        height: 400px;
+        width: 800px;
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 8px;
+        }
+      }
+      .text-part {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        h3 {
+          font-size: 32px;
+          line-height: 40px;
+          color: #231f20;
+        }
+        p {
+          font-size: 16px;
+          line-height: 24px;
+          color: #231f20;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 776px) {
+    .whywe-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      align-items: center;
+      .image-part {
+        height: 400px;
+        width: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 8px;
+        }
+      }
+      .text-part {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+    }
+  }
+  @media screen and (max-width: 426px) {
+    .whywe-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: center;
+      .image-part {
+        height: 250px;
+        width: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 8px;
+        }
+      }
+      .text-part {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        h3 {
+          font-size: 24px;
+          line-height: 32px;
+          color: #231f20;
+        }
+        p {
+          font-size: 16px;
+          line-height: 18px;
+          color: #231f20;
+        }
       }
     }
   }

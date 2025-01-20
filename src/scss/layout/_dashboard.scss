@@ -1,0 +1,9 @@
+.row {
+  display: flex;
+  gap: 24px;
+  .side-bar-wrapper {
+  }
+  .main-body {
+    width: calc(100% - 300px);
+  }
+}

@@ -7,6 +7,7 @@ const Login = () => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const [user, setUser] = useState("");
+
   useEffect(() => {
     const isLogin = localStorage.getItem("isLogin");
     if (isLogin === "1") {
@@ -16,6 +17,17 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    // Check for admin credentials
+    if (name === "admin" && password === "admin") {
+      setMessage("Login successful as Admin!");
+      localStorage.setItem("isLogin", "1");
+      localStorage.setItem("name", name);
+      navigate("/dashboard");
+      return;
+    }
+
+    // Normal login flow
     try {
       const response = await fetch("http://localhost:5000/login", {
         method: "POST",
@@ -72,7 +84,7 @@ const Login = () => {
       <button type="submit">Login</button>
 
       <p>
-        Don't have an account?<Link to={"/signup"}> Register</Link>
+        Don't have an account? <Link to={"/signup"}>Register</Link>
       </p>
 
       {message && <p>{message}</p>}

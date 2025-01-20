@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import VITextInput from "../components/VITextInput";
 import ViSelectInput from "../components/ViSelectInput";
 import ViFileInput from "../components/ViFileInput";
+import Header from "../theme/header";
+import Footer from "../theme/footer";
 
 const DonateBlood = () => {
   const [formData, setFormData] = useState({
@@ -59,7 +61,7 @@ const DonateBlood = () => {
   const bloodGroupOptions = ["A+", "O+", "B+", "AB+", "A-", "O-", "B-", "AB-"];
 
   return (
-    <div>
+    <>
       <section className="donor-section">
         <h2>Donate Blood and Save the Life of Others</h2>
         <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -122,7 +124,7 @@ const DonateBlood = () => {
           </div>
         </form>
       </section>
-    </div>
+    </>
   );
 };
 

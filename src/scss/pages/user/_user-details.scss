@@ -1,0 +1,33 @@
+.sidebar-header-table {
+  border-collapse: collapse;
+  margin: auto;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.sidebar-header-table thead th {
+  background-color: #f4f4f4;
+  text-align: center;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  padding: 10px;
+}
+
+.sidebar-header-table th,
+.sidebar-header-table td {
+  padding: 8px;
+  width: 300px;
+}
+
+.sidebar-header-table tbody th {
+  //   background-color: #f0f0f0;
+  width: 300px;
+}
+
+.sidebar-header-table tbody td {
+  text-align: center;
+}
+.sidebar-header-table tbody tr {
+  border: 1px solid black;
+  text-align: center;
+}

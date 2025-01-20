@@ -1,16 +1,16 @@
 import React from "react";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import Header from "./header";
 import Outerbody from "./body";
 import Footer from "./footer";
 const Layout = () => {
+  const location = useLocation();
+  const isRoot = location.pathname === "/";
+
   return (
     <div>
       <Header />
-      <div className="main-body">
-        <Outerbody />
-        <Outlet />
-      </div>
+      <div className="main-body">{isRoot ? <Outerbody /> : <Outlet />}</div>
       <Footer />
     </div>
   );

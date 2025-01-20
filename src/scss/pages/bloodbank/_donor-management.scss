@@ -11,7 +11,7 @@
 
       thead {
         tr {
-          background-color: #f4f4f4; // Example styling for header row
+          background-color: red; // Example styling for header row
         }
 
         th {
@@ -19,6 +19,11 @@
           vertical-align: middle;
           padding: 8px;
           border: 1px solid #ddd;
+          font-size: 16px;
+          line-height: 18px;
+          font-weight: 600;
+          letter-spacing: -0.172px;
+          color: #fff;
         }
       }
 
@@ -47,6 +52,21 @@
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
+              }
+            }
+            .action-wrapper {
+              display: flex;
+              button {
+                padding: 8px 16px;
+                border-radius: 6px;
+                margin-left: 8px;
+                border: 0;
+                &:hover {
+                  cursor: pointer;
+                  background-color: red;
+                  color: #fff;
+                  transition: 0.3s;
+                }
               }
             }
           }

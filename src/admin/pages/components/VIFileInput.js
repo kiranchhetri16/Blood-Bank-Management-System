@@ -58,7 +58,7 @@ const ViFileInput = ({ label, name, handleChange }) => {
         id="image-preview"
         style={{ marginTop: "10px" }}
       >
-        {image ? (
+        {/* {image ? (
           <img
             src={image}
             alt="Preview"
@@ -72,7 +72,7 @@ const ViFileInput = ({ label, name, handleChange }) => {
           />
         ) : (
           <p style={{ fontSize: "14px", color: "#777" }}>No image selected</p>
-        )}
+        )} */}
       </div>
     </div>
   );

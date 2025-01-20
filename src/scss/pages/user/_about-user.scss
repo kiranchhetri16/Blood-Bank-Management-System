@@ -1,50 +1,222 @@
 .about-user {
   width: 100%;
   margin: auto;
+
   h2 {
     font-size: 40px;
     line-height: 44px;
     font-weight: 700;
     text-align: center;
     padding: 24px 0;
+    color: red;
   }
+
   .user-cart {
-    width: 300px;
-    border: 1px solid red;
+    width: 500px;
     display: flex;
     flex-direction: column;
     gap: 16px;
-    align-items: center;
     padding: 24px;
     border-radius: 8px;
     margin: auto;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
     .user-profile {
       height: 100px;
       display: flex;
       align-items: center;
+      margin: auto;
+
       .pro {
         height: 50%;
+        font-size: 80px;
+        color: #aaa;
       }
     }
-    h3 {
-      font-size: 24px;
-      line-height: 32px;
+
+    .user-list-wrapper {
+      display: flex;
+      flex-direction: row;
+      padding: 0 16px;
+      gap: 6px;
+      align-items: center;
+
+      .user-list-label {
+        width: 80px;
+        font-size: 16px;
+        line-height: 18px;
+        font-weight: 500;
+      }
+
+      .user-list-info {
+        flex: 1;
+        font-size: 16px;
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+      }
+
+      input {
+        flex: 1;
+        font-size: 16px;
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+      }
     }
-    p {
-      font-size: 18px;
-      line-height: 24px;
+    .action-btn-wrapper {
+      display: flex;
+      gap: 20px;
+      .edit-btn,
+      .save-btn,
+      .cancel-btn,
+      .preview-btn {
+        width: fit-content;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 16px;
+        margin: auto;
+        color: #fff;
+        text-align: center;
+        border: none;
+
+        &.edit-btn {
+          background-color: red;
+          border: none;
+          font-size: 16px;
+          line-height: 18px;
+
+          &:hover {
+            background-color: #0056b3;
+            transition: 0.3s;
+            cursor: pointer;
+          }
+        }
+
+        &.save-btn {
+          background-color: #28a745;
+          font-size: 16px;
+          line-height: 18px;
+
+          &:hover {
+            background-color: #218838;
+            transition: 0.3s;
+            cursor: pointer;
+          }
+        }
+
+        &.cancel-btn {
+          background-color: red;
+          font-size: 16px;
+          line-height: 18px;
+
+          &:hover {
+            background-color: #a71d2a;
+            transition: 0.3s;
+            cursor: pointer;
+          }
+        }
+
+        &.preview-btn {
+          background-color: red;
+
+          &:hover {
+            cursor: pointer;
+            background-color: #eb2b2b;
+            transition: 0.3s;
+          }
+        }
+      }
     }
+    .edit-btn,
+    .save-btn,
+    .cancel-btn,
     .preview-btn {
       width: fit-content;
       padding: 12px 24px;
-      background-color: red;
       border-radius: 8px;
-      color: #fff;
       font-size: 16px;
-      &:hover {
-        cursor: pointer;
-        background-color: #eb2b2b;
-        transition: 0.3s;
+      margin: auto;
+      color: #fff;
+      text-align: center;
+
+      &.edit-btn {
+        background-color: red;
+        border: none;
+        font-size: 16px;
+        line-height: 18px;
+
+        &:hover {
+          background-color: #0056b3;
+          transition: 0.3s;
+          cursor: pointer;
+        }
+      }
+
+      &.save-btn {
+        background-color: #28a745;
+
+        &:hover {
+          background-color: #218838;
+          transition: 0.3s;
+        }
+      }
+
+      &.cancel-btn {
+        background-color: #dc3545;
+
+        &:hover {
+          background-color: #a71d2a;
+          transition: 0.3s;
+        }
+      }
+
+      &.preview-btn {
+        background-color: red;
+
+        &:hover {
+          cursor: pointer;
+          background-color: #eb2b2b;
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .user-cart {
+      width: 100%;
+      padding: 16px;
+
+      .user-profile {
+        .pro {
+          font-size: 60px;
+        }
+      }
+
+      .user-list-wrapper {
+        flex-direction: column;
+
+        .user-list-label {
+          width: 100%;
+          font-size: 14px;
+        }
+
+        .user-list-info,
+        input {
+          font-size: 14px;
+        }
+      }
+
+      .edit-btn,
+      .save-btn,
+      .cancel-btn,
+      .preview-btn {
+        font-size: 14px;
+        padding: 10px 20px;
       }
     }
   }

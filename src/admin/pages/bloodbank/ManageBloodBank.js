@@ -1,39 +1,56 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Header from "../../../pages/theme/header";
+import Footer from "../../../pages/theme/footer";
+import ViSelect from "../components/ViSelect";
 
 const ManageBloodBank = () => {
-  const [bloodBanks, setBloodBanks] = useState([]); // Stores fetched results
+  const [bloodBanks, setBloodBanks] = useState([]);
+  const [donors, setDonors] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // State for search fields
-  const [searchFields, setSearchFields] = useState({
+  const [bloodBankSearchFields, setBloodBankSearchFields] = useState({
     state: "",
     district: "",
     bloodtype: "",
     blood: "",
   });
 
-  // Handle search field changes
+  const [bloodSortConfig, setBloodSortConfig] = useState({
+    key: "bloodtype",
+    direction: "asc",
+  });
+  const [donorSortConfig, setDonorSortConfig] = useState({
+    key: "bloodtype",
+    direction: "asc",
+  });
+
+  const [donorLocation, setDonorLocation] = useState("");
+
+  // Common handlers
   const handleFieldChange = (e) => {
     const { name, value } = e.target;
-    setSearchFields((prev) => ({
+    setBloodBankSearchFields((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  // Handle search submission
-  const handleSearch = async (e) => {
+  const handleDonorLocationChange = (e) => {
+    setDonorLocation(e.target.value);
+  };
+
+  // Blood Bank Search
+  const handleBloodBankSearch = async (e) => {
     e.preventDefault();
-    setLoading(true); // Start loading
-    setError(""); // Reset error state
+    setLoading(true);
+    setError("");
 
     try {
-      // Construct query parameters from search fields
       const queryParams = new URLSearchParams(
         Object.fromEntries(
-          Object.entries(searchFields).filter(
+          Object.entries(bloodBankSearchFields).filter(
             ([_, value]) => value.trim() !== ""
           )
         )
@@ -46,93 +63,313 @@ const ManageBloodBank = () => {
       if (response.data.length === 0) {
         setError("No matching blood banks found.");
       } else {
-        setBloodBanks(response.data); // Update results only if matches are found
+        setBloodBanks(response.data);
       }
     } catch (err) {
       console.error(err);
       setError("Failed to fetch blood banks.");
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
+
+  // Donor Search
+  const handleDonorSearch = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    try {
+      const queryParams = new URLSearchParams({
+        location: donorLocation.trim(),
+      }).toString();
+
+      const response = await axios.get(
+        `http://localhost:5000/availabledonors/search?${queryParams}`
+      );
+
+      if (Array.isArray(response.data.donors)) {
+        if (response.data.donors.length === 0) {
+          setError("No matching donors found.");
+        } else {
+          setDonors(response.data.donors);
+        }
+      } else {
+        console.error("Unexpected data format for donors:", response.data);
+        setDonors([]);
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Failed to fetch donors.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Sorting Handlers
+  const handleBloodSort = () => {
+    setBloodBanks((prevBloodBanks) =>
+      [...prevBloodBanks].sort((a, b) => {
+        if (a[bloodSortConfig.key] < b[bloodSortConfig.key]) {
+          return bloodSortConfig.direction === "asc" ? -1 : 1;
+        }
+        if (a[bloodSortConfig.key] > b[bloodSortConfig.key]) {
+          return bloodSortConfig.direction === "asc" ? 1 : -1;
+        }
+        return 0;
+      })
+    );
+  };
+
+  const handleBloodSortConfigChange = (e) => {
+    const { name, value } = e.target;
+    setBloodSortConfig((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleDonorSort = () => {
+    setDonors((prevDonors) =>
+      [...prevDonors].sort((a, b) => {
+        if (a[donorSortConfig.key] < b[donorSortConfig.key]) {
+          return donorSortConfig.direction === "asc" ? -1 : 1;
+        }
+        if (a[donorSortConfig.key] > b[donorSortConfig.key]) {
+          return donorSortConfig.direction === "asc" ? 1 : -1;
+        }
+        return 0;
+      })
+    );
+  };
+
+  const handleDonorSortConfigChange = (e) => {
+    const { name, value } = e.target;
+    setDonorSortConfig((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const State = [
+    "Bagmati",
+    "Gandaki",
+    "Karnali",
+    "Koshi",
+    "Lumbini",
+    "Sudurpashchim",
+    "Madhesh",
+  ];
+  const District = ["Kathmandu", "Lalitpur", "Bhaktpur"];
+  const bloodGroupOptions = ["A+", "O+", "B+", "AB+", "A-", "O-", "B-", "AB-"];
+  const WholeBlood = ["whole blood", "plasma", "cell"];
 
   return (
     <section className="manage-bloodbank">
       <div className="ci-container">
         <h2>Blood Stock Management</h2>
-        <form onSubmit={handleSearch}>
-          <h3>Search Blood Stock</h3>
+
+        {/* Blood Bank Search */}
+        <form onSubmit={handleBloodBankSearch}>
+          <h3>Search Blood Banks</h3>
           <div className="primary-form">
-            <input
-              type="text"
+            <ViSelect
               name="state"
-              placeholder="Search by State"
-              value={searchFields.state}
+              label="Select State"
+              value={bloodBankSearchFields.state}
               onChange={handleFieldChange}
-              style={{ marginRight: "10px" }}
+              options={State}
             />
-            <input
-              type="text"
+            <ViSelect
               name="district"
-              placeholder="Search by District"
-              value={searchFields.district}
+              label="Select District"
+              value={bloodBankSearchFields.district}
               onChange={handleFieldChange}
-              style={{ marginRight: "10px" }}
+              options={District}
             />
-            <input
-              type="text"
+            <ViSelect
               name="bloodtype"
-              placeholder="Search by Blood Type"
-              value={searchFields.bloodtype}
+              label="Select Blood Type"
+              value={bloodBankSearchFields.bloodtype}
               onChange={handleFieldChange}
+              options={bloodGroupOptions}
             />
-            <input
-              type="text"
+            <ViSelect
               name="blood"
-              placeholder="Search by Blood"
-              value={searchFields.blood}
+              label="Select Blood"
+              value={bloodBankSearchFields.blood}
               onChange={handleFieldChange}
-              style={{ marginRight: "10px" }}
+              options={WholeBlood}
             />
           </div>
-          <button type="submit">Search</button>
+          <button type="submit">Search Blood Banks</button>
         </form>
+
+        {/* Blood Bank Sorting */}
+        <div style={{ marginTop: "20px" }}>
+          <h3>Sort Blood Banks</h3>
+          <div>
+            <label>
+              Sort by:{" "}
+              <select
+                name="key"
+                value={bloodSortConfig.key}
+                onChange={handleBloodSortConfigChange}
+              >
+                <option value="bloodbank">Blood Bank</option>
+                <option value="bloodtype">Blood Type</option>
+                <option value="category">Category</option>
+              </select>
+            </label>
+            <label style={{ marginLeft: "10px" }}>
+              Order:{" "}
+              <select
+                name="direction"
+                value={bloodSortConfig.direction}
+                onChange={handleBloodSortConfigChange}
+              >
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+              </select>
+            </label>
+            <button onClick={handleBloodSort} style={{ marginLeft: "10px" }}>
+              Apply Sort
+            </button>
+          </div>
+        </div>
+
+        {/* Blood Bank Table */}
         {loading ? (
           <p>Loading...</p>
         ) : error ? (
           <p>{error}</p>
         ) : (
-          <table border="1">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Blood Bank</th>
-                <th>Category</th>
-                <th>Availability</th>
-                <th>Updated Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {bloodBanks.map((bank) => (
-                <tr key={bank.id}>
-                  <td>{bank.id}</td>
-                  <td>
-                    {bank.bloodbank}
-                    <div className="details">
-                      {bank.state}, {bank.district}, {bank.location}, email:{" "}
-                      {bank.email}, phone: {bank.phone}
-                    </div>
-                  </td>
-                  <td>{bank.category}</td>
-                  <td>
-                    {bank.bloodtype}
-                    <div>{bank.blood}</div>
-                  </td>
-                  <td>{new Date(bank.created_date).toLocaleString()}</td>
+          <div>
+            <h3>Blood Banks</h3>
+            <table border="1">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Blood Bank</th>
+                  <th>Category</th>
+                  <th>Availability</th>
+                  <th>Updated Date</th>
+                  <th>Map</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {bloodBanks.map((bank) => (
+                  <tr key={bank.id}>
+                    <td>{bank.id}</td>
+                    <td>{bank.bloodbank}</td>
+                    <td>{bank.category}</td>
+                    <td>{bank.bloodtype}</td>
+                    <td>{new Date(bank.created_date).toLocaleString()}</td>
+                    <td>
+                      <button
+                        onClick={() =>
+                          window.open(
+                            `https://www.google.com/maps?q=${encodeURIComponent(
+                              bank.location
+                            )}`,
+                            "_blank"
+                          )
+                        }
+                      >
+                        View on Map
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {/* Donor Search */}
+        <form onSubmit={handleDonorSearch}>
+          <h3>Search Donors by Location</h3>
+          <div className="primary-form">
+            <input
+              type="text"
+              name="location"
+              placeholder="Search by Location"
+              value={donorLocation}
+              onChange={handleDonorLocationChange}
+            />
+          </div>
+          <button type="submit">Search Donors</button>
+        </form>
+
+        {/* Donor Sorting */}
+        <div style={{ marginTop: "20px" }}>
+          <h3>Sort Available Donors</h3>
+          <div>
+            <label>
+              Sort by:{" "}
+              <select
+                name="key"
+                value={donorSortConfig.key}
+                onChange={handleDonorSortConfigChange}
+              >
+                <option value="name">Name</option>
+                <option value="bloodtype">Blood Type</option>
+                <option value="location">Location</option>
+                <option value="age">Age</option>
+              </select>
+            </label>
+            <label style={{ marginLeft: "10px" }}>
+              Order:{" "}
+              <select
+                name="direction"
+                value={donorSortConfig.direction}
+                onChange={handleDonorSortConfigChange}
+              >
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+              </select>
+            </label>
+            <button onClick={handleDonorSort} style={{ marginLeft: "10px" }}>
+              Apply Sort
+            </button>
+          </div>
+        </div>
+
+        {/* Donor Table */}
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : (
+          <div>
+            <h3>Available Donors</h3>
+            <table border="1">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Blood Type</th>
+                  <th>Location</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                {donors.map((donor) => (
+                  <tr key={donor.id}>
+                    <td>{donor.id}</td>
+                    <td>{donor.name}</td>
+                    <td>{donor.age}</td>
+                    <td>{donor.bloodtype}</td>
+                    <td>{donor.location}</td>
+                    <td>{donor.phone}</td>
+                    <td>{donor.email}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
     </section>

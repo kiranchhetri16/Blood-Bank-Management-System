@@ -2,13 +2,16 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faCircleQuestion, faBell } from "@fortawesome/free-regular-svg-icons";
+import AdminLogo from "../../../Assest/image/adminlogo.png";
 const AdminHeader = () => {
   return (
     <>
       <section className="admin-header">
         <div className="ci-contianer">
           <nav>
-            <div className="logo"></div>
+            <div className="logo">
+              <img src={AdminLogo} />
+            </div>
             <div className="menu-item">
               <div className="search-btn">
                 <FontAwesomeIcon

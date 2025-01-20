@@ -8,9 +8,14 @@
     padding: 12px 24px;
 
     .logo {
-      height: 30px;
+      height: 40px;
       width: 100px;
-      border: 1px solid black;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+      }
     }
     .menu-item {
       display: flex;

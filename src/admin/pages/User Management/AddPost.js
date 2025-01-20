@@ -41,44 +41,42 @@ const AddPost = () => {
 
   return (
     <section className="add-blog-post">
-      <div className="ci-container">
-        <h2>Add Blog Post</h2>
-        <form
-          className="post-wrapper"
-          onSubmit={handleSubmit}
-          encType="multipart/form-data" // Corrected encType
-        >
-          {/* File Input */}
-          <VIFileInput
-            label="Feature Image"
-            name="image"
-            handleChange={(e) => setImage(e.target.files[0])} // Updated to handle file object
-          />
-          {/* Title Input */}
-          <ViInput
-            type="text"
-            title="Title"
-            name="title"
-            value={title}
-            handleChange={(e) => setTitle(e.target.value)}
-            placeholder="Enter the title"
-          />
-          {/* Content Input */}
-          <div className="input-label">
-            <label htmlFor="content">Content</label>
-            <textarea
-              id="content"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              rows="10"
-              required
-              placeholder="Enter the content"
-            ></textarea>
-          </div>
-          {/* Submit Button */}
-          <button type="submit">Add Post</button>
-        </form>
-      </div>
+      <h2>Add Blog Post</h2>
+      <form
+        className="post-wrapper"
+        onSubmit={handleSubmit}
+        encType="multipart/form-data" // Corrected encType
+      >
+        {/* File Input */}
+        <VIFileInput
+          label="Feature Image"
+          name="image"
+          handleChange={(e) => setImage(e.target.files[0])} // Updated to handle file object
+        />
+        {/* Title Input */}
+        <ViInput
+          type="text"
+          title="Title"
+          name="title"
+          value={title}
+          handleChange={(e) => setTitle(e.target.value)}
+          placeholder="Enter the title"
+        />
+        {/* Content Input */}
+        <div className="input-label">
+          <label htmlFor="content">Content</label>
+          <textarea
+            id="content"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            rows="10"
+            required
+            placeholder="Enter the content"
+          ></textarea>
+        </div>
+        {/* Submit Button */}
+        <button type="submit">Add Post</button>
+      </form>
     </section>
   );
 };

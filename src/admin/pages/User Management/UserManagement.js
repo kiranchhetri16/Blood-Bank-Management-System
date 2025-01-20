@@ -8,14 +8,7 @@ const UserManagement = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [deletingUserId, setDeletingUserId] = useState(null); // Track the userId being deleted
 
-  const tableHeaders = [
-    "SN",
-    "User Name",
-    "E-mail",
-    "Password",
-    "Address",
-    "Action",
-  ];
+  const tableHeaders = ["SN", "User Name", "E-mail", "Address", "Action"];
 
   useEffect(() => {
     fetchUsers(page);
@@ -33,84 +26,108 @@ const UserManagement = () => {
       console.error("Error fetching users:", error);
     }
   };
+  const [users, setUsers] = useState([]); // Assuming you have a list of users
+  const [error, setError] = useState(null); // For handling error messages
 
-  const handleDeleteClick = (userId) => {
-    if (window.confirm("Are you sure you want to delete this user?")) {
-      setDeletingUserId(userId);
+  const handleDeleteClick = async (userId) => {
+    // Log the userId for debugging
+    console.log("User ID to delete:", userId);
+
+    // Ask for user confirmation
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+    if (!confirmed) {
+      return; // Exit if the user cancels the action
+    }
+
+    try {
+      // Call the delete API
+      const response = await axios.delete(
+        `http://localhost:5000/data/delete/${userId}`
+      );
+      console.log("User deleted successfully:", response.data);
+
+      // Update the state (assuming setUsers is defined and holds your list of users)
+      setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+    } catch (error) {
+      // Log the error and handle it in the UI
+      console.error("Error deleting user:", error);
+      setError("Failed to delete the user. Please try again.");
     }
   };
 
   return (
     <>
       <section className="listing-user">
-        <div className="ci-container">
-          <div className="user-list">
-            <h2>User Management</h2>
-            <table>
-              <thead>
-                <tr>
-                  {tableHeaders.map((header, index) => (
-                    <th key={index}>{header}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((item, index) => (
-                  <tr key={item.id}>
-                    <td>{index + 1}</td>
-                    <td>{item.name}</td>
-                    <td>{item.email}</td>
-                    <td>{item.password}</td>
-                    <td>{item.address}</td>
-                    <td>
-                      <div className="action-btn">
-                        <Link to={`/edit/${item.id}`} className="edit-btn">
-                          Edit
-                        </Link>
-
-                        <button
-                          onClick={() => handleDeleteClick(item.id)}
-                          className="delete-btn"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
+        <div className="user-list">
+          <table>
+            <thead>
+              <tr>
+                {tableHeaders.map((header, index) => (
+                  <th key={index}>{header}</th>
                 ))}
-              </tbody>
-            </table>
-            <div
-              className="pagination"
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((item, index) => (
+                <tr key={item.id}>
+                  <td>{index + 1}</td>
+                  <td>{item.name}</td>
+                  <td>{item.email}</td>
+
+                  <td>{item.address}</td>
+                  <td>
+                    <div className="action-btn">
+                      <Link
+                        to={`/dashboard/user-management/edit/${item.id}`}
+                        className="edit-btn"
+                      >
+                        Edit
+                      </Link>
+
+                      <button
+                        onClick={() => handleDeleteClick(item.id)}
+                        className="delete-btn"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div
+            className="pagination"
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "20px",
+            }}
+          >
+            <button
+              disabled={page <= 1}
+              onClick={() => setPage(page - 1)}
               style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "space-between",
-                marginTop: "20px",
+                padding: "5px",
+                borderRadius: "6px",
+                cursor: "pointer",
               }}
             >
-              <button
-                disabled={page <= 1}
-                onClick={() => setPage(page - 1)}
-                style={{
-                  padding: "5px",
-                  borderRadius: "6px",
-                  cursor: "pointer",
-                }}
-              >
-                Previous
-              </button>
-              <span>
-                Page {page} {totalPages}
-              </span>
-              <button
-                disabled={page >= totalPages}
-                onClick={() => setPage(page + 1)}
-                style={{ padding: "5px", cursor: "pointer" }}
-              >
-                Next
-              </button>
-            </div>
+              Previous
+            </button>
+            <span>
+              Page {page} {totalPages}
+            </span>
+            <button
+              disabled={page >= totalPages}
+              onClick={() => setPage(page + 1)}
+              style={{ padding: "5px", cursor: "pointer" }}
+            >
+              Next
+            </button>
           </div>
         </div>
       </section>

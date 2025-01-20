@@ -1,11 +1,19 @@
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopyright } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebook,
+  faInstagram,
+  faLinkedinIn,
+  faWhatsapp,
+} from "@fortawesome/free-brands-svg-icons";
+import { faCopyright } from "@fortawesome/free-regular-svg-icons";
+import Map from "../../Assest/image/nepal-new-map.png";
 const Footer = () => {
   const LookingForBlood = [
     {
       id: 1,
       name: "Looking For Blood",
-      available: "Blood Avaibality",
+      available: "Donate Blood",
       directory: "Blood Bank Directory",
       request: "Blood Request",
     },
@@ -33,19 +41,17 @@ const Footer = () => {
   ];
   return (
     <>
-      <section className="footer">
+      <section
+        className="footer"
+        style={{
+          backgroundImage: `url(${Map})`,
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         <div className="ci-container">
           <div className="footer-wrapper">
-            <div className="looking-for-blood">
-              {LookingForBlood.map((item) => (
-                <ul key={item.id}>
-                  <p>{item.name}</p>
-                  <li>{item.available}</li>
-                  <li>{item.directory}</li>
-                  <li>{item.request}</li>
-                </ul>
-              ))}
-            </div>
             <div className="footer-contact-details">
               {ContactInfo.map((item) => (
                 <ul key={item.id}>
@@ -62,6 +68,23 @@ const Footer = () => {
                 </ul>
               ))}
             </div>
+            <div className="looking-for-blood">
+              {LookingForBlood.map((item) => (
+                <ul key={item.id}>
+                  <p>{item.name}</p>
+                  <li>
+                    <Link to={"/donor"}> {item.available}</Link>
+                  </li>
+                  <li>
+                    <Link to={""}> {item.directory}</Link>
+                  </li>
+                  <li>
+                    <Link to={""}> {item.request}</Link>
+                  </li>
+                </ul>
+              ))}
+            </div>
+
             <div className="footer-resources">
               {Resource.map((item) => (
                 <ul key={item.id}>
@@ -76,11 +99,18 @@ const Footer = () => {
           </div>
           <hr />
           <div className="last-footer-details">
-            <p>
-              Copyright
-              <FontAwesomeIcon icon={faCopyright} />
-              2024 Kiran Chhetri
-            </p>
+            <div className="copy-right-part">
+              <p>Copyright</p>
+              <FontAwesomeIcon icon={faCopyright} className="copy-right" />
+              <p>2024 Blood Bank Management System</p>
+            </div>
+
+            <div className="social-media">
+              <FontAwesomeIcon icon={faFacebook} className="sites" />
+              <FontAwesomeIcon icon={faInstagram} className="sites" />
+              <FontAwesomeIcon icon={faLinkedinIn} className="sites" />
+              <FontAwesomeIcon icon={faWhatsapp} className="sites" />
+            </div>
           </div>
         </div>
       </section>

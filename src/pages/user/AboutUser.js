@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+
 const AboutUser = () => {
   const [user, setUser] = useState({
+    id: localStorage.getItem("id"),
     name: localStorage.getItem("name"),
     email: localStorage.getItem("email"),
+    location: localStorage.getItem("location"),
   });
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedUser, setEditedUser] = useState(user);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   useEffect(() => {
     const isLogin = localStorage.getItem("isLogin");
@@ -15,14 +24,86 @@ const AboutUser = () => {
       window.location.href = "/login";
     }
 
-    // Retrieve user data from localStorage
+    const id = localStorage.getItem("id");
     const name = localStorage.getItem("name");
     const email = localStorage.getItem("email");
+    const location = localStorage.getItem("location");
 
-    if (email && name) {
-      setUser({ name, email });
+    if (id && name && email && location) {
+      setUser({ id, name, email, location });
+    } else {
+      console.error("User data or ID is missing in localStorage");
     }
   }, []);
+
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedUser((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
+  const handleSave = async () => {
+    if (password && password !== confirmPassword) {
+      setPasswordError("Passwords do not match");
+      return;
+    }
+
+    // Debug: Log the user ID to ensure it's set properly
+    console.log("User ID:", user.id); // Debugging line
+
+    try {
+      const response = await fetch("http://localhost:5000/api/update-user", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: user.id, // Ensure the correct ID is being sent
+          name: editedUser.name,
+          email: editedUser.email,
+          location: editedUser.location,
+          password: password || null, // Send password only if it's changed
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(await response.text());
+      }
+
+      // Update local storage with new values
+      localStorage.setItem("name", editedUser.name);
+      localStorage.setItem("email", editedUser.email);
+      localStorage.setItem("location", editedUser.location);
+
+      setUser(editedUser);
+      setPassword("");
+      setConfirmPassword("");
+      setPasswordError("");
+      setIsEditing(false);
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
+  };
+
+  const handleCancel = () => {
+    setIsEditing(false);
+    setEditedUser(user);
+    setPassword("");
+    setConfirmPassword("");
+    setPasswordError("");
+  };
+
   return (
     <>
       <section className="about-user">
@@ -32,9 +113,82 @@ const AboutUser = () => {
             <div className="user-profile">
               <FontAwesomeIcon icon={faCircleUser} className="pro" />
             </div>
-            <h3>{user.name || "Name"}</h3>
-            <p>{user.email || "E-mail"}</p>
-            <div className="preview-btn">Preview</div>
+            {isEditing ? (
+              <>
+                <div className="user-list-wrapper">
+                  <label>Name:</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={editedUser.name}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="user-list-wrapper">
+                  <label>Email:</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={editedUser.email}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="user-list-wrapper">
+                  <label>Address:</label>
+                  <input
+                    type="text"
+                    name="location"
+                    value={editedUser.location}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="user-list-wrapper">
+                  <label>New Password:</label>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={handlePasswordChange}
+                  />
+                </div>
+                <div className="user-list-wrapper">
+                  <label>Confirm Password:</label>
+                  <input
+                    type="password"
+                    value={confirmPassword}
+                    onChange={handleConfirmPasswordChange}
+                  />
+                </div>
+                {passwordError && <p className="error">{passwordError}</p>}
+                <div className="action-btn-wrapper">
+                  <button className="save-btn" onClick={handleSave}>
+                    Save
+                  </button>
+                  <button className="cancel-btn" onClick={handleCancel}>
+                    Cancel
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="user-list-wrapper">
+                  <div className="user-list-label">Name</div>
+                  <div className="user-list-info">{user.name || "Name"}</div>
+                </div>
+                <div className="user-list-wrapper">
+                  <div className="user-list-label">Email:</div>
+                  <div className="user-list-info">{user.email || "E-mail"}</div>
+                </div>
+                <div className="user-list-wrapper">
+                  <div className="user-list-label">Address:</div>
+                  <div className="user-list-info">
+                    {user.location || "Location"}
+                  </div>
+                </div>
+                <button className="edit-btn" onClick={handleEdit}>
+                  Edit
+                </button>
+              </>
+            )}
           </div>
         </div>
       </section>

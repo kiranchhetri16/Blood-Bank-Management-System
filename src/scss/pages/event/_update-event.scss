@@ -1,0 +1,45 @@
+.event-table-section {
+  padding: 20px;
+}
+
+.event-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.event-table th,
+.event-table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.event-table th {
+  background-color: #f4f4f4;
+}
+
+.action-wrapper {
+  display: flex;
+  gap: 20px;
+  .edit-btn,
+  .delete-btn {
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: red;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    &.edit-btn {
+      background-color: green;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.read-more span {
+  margin-right: 5px;
+}

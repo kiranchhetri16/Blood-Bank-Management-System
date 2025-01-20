@@ -1,0 +1,44 @@
+.user-edit {
+  width: 50%;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  margin-top: 32px;
+}
+
+.user-edit table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-edit td {
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.user-edit label {
+  font-weight: bold;
+}
+
+.user-edit input[type="text"],
+.user-edit input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.user-edit button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.user-edit button:hover {
+  background-color: #0056b3;
+}

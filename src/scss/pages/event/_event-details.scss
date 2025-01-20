@@ -1,0 +1,43 @@
+.event-details-section {
+  width: 100%;
+  margin: auto;
+
+  h2 {
+    font-size: 32px;
+    line-height: 36px;
+    text-align: center;
+    padding: 24px 0;
+    letter-spacing: -0.172px;
+  }
+  .event-wrapper {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+
+    .event-image {
+      width: calc(50% - 24px);
+      border-radius: 6px;
+    }
+    .event-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      p {
+        font-size: 18px;
+        line-height: 18px;
+        display: flex;
+        gap: 10px;
+      }
+      a {
+        color: red;
+      }
+    }
+  }
+  .content {
+    font-size: 16px;
+    line-height: 18px;
+    padding: 16px 0;
+    letter-spacing: -0.172px;
+    text-align: center;
+  }
+}

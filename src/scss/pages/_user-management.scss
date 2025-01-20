@@ -1,7 +1,5 @@
 .listing-user {
-  padding: 40px 20px;
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
+  width: 100%;
 }
 
 /* Header */
@@ -28,7 +26,7 @@
   }
 
   th {
-    background-color: #005ef7;
+    background-color: red;
     color: white;
     font-weight: bold;
   }
@@ -55,7 +53,9 @@
     margin-right: 8px;
 
     .edit-btn {
-      background-color: #a863f8;
+      // background-color: #a863f8;
+      background-color: #005ef7;
+
       text-decoration: none;
       padding: 8px 16px;
       border-radius: 6px;
@@ -74,7 +74,9 @@
       padding: 8px 16px;
       border: none;
       border-radius: 6px;
-      background-color: #f84d79;
+      // background-color: #f84d79;
+      background-color: red;
+
       font-size: 16px;
       line-height: 24px;
       color: #fff;

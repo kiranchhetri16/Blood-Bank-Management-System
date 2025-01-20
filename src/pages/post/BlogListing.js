@@ -14,6 +14,7 @@ const BlogListing = () => {
     axios
       .get("http://localhost:5000/api/posts")
       .then((response) => {
+        console.log("API Response: ", response.data); // Log the response data
         setPosts(response.data); // Set all posts (ensure it's an array)
       })
       .catch((error) => {
@@ -38,6 +39,9 @@ const BlogListing = () => {
   if (!currentPost) {
     return <p>Post not found.</p>;
   }
+
+  // Debug the image URL
+  console.log("Current Post Image URL:", currentPost.image);
 
   return (
     <section className="blog-listing-section">
@@ -73,7 +77,11 @@ const BlogListing = () => {
                   className="cart-image"
                   style={{
                     backgroundImage: post.image
-                      ? `url(http://localhost:5000${post.image})`
+                      ? `url(${
+                          post.image.startsWith("http")
+                            ? post.image
+                            : `http://localhost:5000${post.image}`
+                        })`
                       : "none",
                     backgroundSize: "cover",
                     backgroundPosition: "center",

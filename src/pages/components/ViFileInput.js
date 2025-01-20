@@ -55,7 +55,7 @@ const ViFileInput = ({ label, name, handleChange }) => {
 
       {error && <p style={{ color: "red", fontSize: "12px" }}>{error}</p>}
 
-      <div
+      {/* <div
         className="image-preview"
         id="image-preview"
         style={{ marginTop: "10px" }}
@@ -75,9 +75,10 @@ const ViFileInput = ({ label, name, handleChange }) => {
         ) : (
           <p style={{ fontSize: "14px", color: "#777" }}>No image selected</p>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
 
 export default ViFileInput;
+

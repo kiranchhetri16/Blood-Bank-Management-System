@@ -1,10 +1,11 @@
 .side-bar {
-  width: 250px;
-  height: 100vh;
-  background-color: #f7efe5;
+  display: flex;
+  gap: 24px;
+
   .side-bar-wrapper {
-    width: 100%;
+    width: 250px;
     padding: 22px 22px;
+    background-color: #f7efe5;
 
     display: flex;
     flex-direction: column;
@@ -12,10 +13,13 @@
     .dashboard,
     .user-management,
     .volunteer,
-    .add-bank {
+    .add-bank,
+    .donor-manage {
       display: flex;
       align-items: center;
       gap: 10px;
+      text-decoration: none;
+      color: #000;
       .icon {
         font-size: 16px;
       }
@@ -27,10 +31,10 @@
       &:hover {
         cursor: pointer;
         .icon {
-          color: #ff9400;
+          color: red;
         }
         p {
-          color: #ff9400;
+          color: red;
         }
       }
     }

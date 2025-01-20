@@ -1,14 +1,25 @@
 .blog-section {
   width: 100%;
   margin: auto;
-  padding: 12px 0;
+  margin-top: 64px;
+  background: #f8f9fa;
+  padding: 36px 0;
   h2 {
-    font-size: 32px;
-    line-height: 26px;
-    font-weight: 700;
+    font-size: 40px;
+    line-height: 44px;
     text-align: center;
-    padding: 12px 0;
-    padding-bottom: 30px;
+    margin: 24px 0;
+    color: red;
+    position: relative;
+    &:before {
+      position: absolute;
+      content: "";
+      height: 4px;
+      width: 220px;
+      background: red;
+      bottom: -4px;
+      border-radius: 2px;
+    }
   }
   .blog-wrapper {
     width: 100%;
@@ -17,12 +28,13 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 24px;
+    margin-top: 48px;
     .cart-wrapper {
       width: 400px;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      border: 1px solid black;
+      border: 1px solid red;
       padding: 12px;
       border-radius: 8px;
       .cart-image {
@@ -46,14 +58,16 @@
         text-decoration: none;
         color: #000000;
         h3 {
-          font-size: 32px;
-          line-height: 36px;
+          font-size: 24px;
+          line-height: 32px;
           font-weight: 700;
+          letter-spacing: -0.172px;
 
           &:hover {
             text-decoration: underline;
-            color: #007000;
+            color: red;
             cursor: pointer;
+            transition: 0.3s;
           }
         }
       }
@@ -61,6 +75,22 @@
         transform: scale(1.02);
         transition: 0.3s;
       }
+    }
+  }
+  .read-more {
+    font-size: 16px;
+    line-height: 18px;
+    color: #fff;
+    width: fit-content;
+    padding: 8px 10px;
+    border-radius: 4px;
+    margin: auto;
+    margin-top: 24px;
+    background-color: red;
+    &:hover {
+      cursor: pointer;
+      background-color: blue;
+      transition: 0.3s;
     }
   }
 }

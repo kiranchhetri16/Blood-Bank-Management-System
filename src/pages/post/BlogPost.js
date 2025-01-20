@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendar } from "@fortawesome/free-solid-svg-icons";
+import { faCalendar, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -82,6 +82,9 @@ const BlogPost = () => {
               </Link>
             </div>
           ))}
+        </div>
+        <div className="read-more">
+          Read More <FontAwesomeIcon icon={faArrowRight} />
         </div>
       </div>
     </section>

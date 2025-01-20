@@ -1,10 +1,11 @@
 .footer {
   width: 100%;
-  background-color: black;
+  background-color: transparent;
   margin: auto;
   margin-top: 32px;
   .footer-wrapper {
     display: flex;
+    justify-content: center;
     gap: 80px;
     padding: 24px 0;
     .looking-for-blood,
@@ -19,17 +20,35 @@
         width: auto;
         gap: 8px;
         p {
-          color: #fff;
+          color: #000;
           font-size: 24px;
           line-height: 32px;
         }
         li {
-          text-align: none;
-          color: #fff;
+          color: #888;
           font-size: 16px;
-          line-height: 18px;
+          line-height: 16px;
+          letter-spacing: -0.172px;
           span {
             margin-left: 5px;
+          }
+          a {
+            text-decoration: none;
+            color: #888;
+            font-size: 16px;
+            line-height: 16px;
+            letter-spacing: -0.172px;
+          }
+          &:hover {
+            cursor: pointer;
+            color: red;
+            a {
+              text-decoration: none;
+              color: red;
+              font-size: 16px;
+              line-height: 16px;
+              letter-spacing: -0.172px;
+            }
           }
         }
       }
@@ -42,11 +61,70 @@
   }
   .last-footer-details {
     display: flex;
-    gap: 5px;
-    p {
-      font-size: 18px;
-      line-height: 24px;
-      color: #fff;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 0 10px;
+    .copy-right-part {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      p {
+        font-size: 16px;
+        line-height: 18px;
+        font-weight: 400;
+        color: #888;
+      }
+      .copy-right {
+        font-size: 14px;
+        color: #888;
+      }
+    }
+    .social-media {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      .sites {
+        font-size: 18px;
+        color: red;
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.09);
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .footer-wrapper {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 80px;
+      padding: 24px 0;
+    }
+    .last-footer-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 10px 0 10px;
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .footer-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 80px;
+      padding: 24px 0;
+    }
+    .last-footer-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 10px 0 10px;
     }
   }
 }
