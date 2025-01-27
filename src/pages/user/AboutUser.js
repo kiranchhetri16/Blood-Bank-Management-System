@@ -59,8 +59,15 @@ const AboutUser = () => {
       return;
     }
 
-    // Debug: Log the user ID to ensure it's set properly
-    console.log("User ID:", user.id); // Debugging line
+    const payload = {
+      id: user.id,
+      name: editedUser.name,
+      email: editedUser.email,
+      location: editedUser.location,
+      password: password || null,
+    };
+
+    console.log("Payload being sent:", payload);
 
     try {
       const response = await fetch("http://localhost:5000/api/update-user", {
@@ -68,20 +75,18 @@ const AboutUser = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          id: user.id, // Ensure the correct ID is being sent
-          name: editedUser.name,
-          email: editedUser.email,
-          location: editedUser.location,
-          password: password || null, // Send password only if it's changed
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
-        throw new Error(await response.text());
+        const errorText = await response.text(); // Handle plain text error
+        throw new Error(errorText);
       }
 
-      // Update local storage with new values
+      const result = await response.json(); // Parse successful JSON response
+      console.log("Backend response:", result);
+
+      // Update local storage and state
       localStorage.setItem("name", editedUser.name);
       localStorage.setItem("email", editedUser.email);
       localStorage.setItem("location", editedUser.location);
@@ -92,7 +97,7 @@ const AboutUser = () => {
       setPasswordError("");
       setIsEditing(false);
     } catch (error) {
-      console.error("Error updating user:", error);
+      console.error("Error updating user:", error.message || error);
     }
   };
 
@@ -171,7 +176,7 @@ const AboutUser = () => {
             ) : (
               <>
                 <div className="user-list-wrapper">
-                  <div className="user-list-label">Name</div>
+                  <div className="user-list-label">Name:</div>
                   <div className="user-list-info">{user.name || "Name"}</div>
                 </div>
                 <div className="user-list-wrapper">
@@ -184,9 +189,9 @@ const AboutUser = () => {
                     {user.location || "Location"}
                   </div>
                 </div>
-                <button className="edit-btn" onClick={handleEdit}>
+                {/* <button className="edit-btn" onClick={handleEdit}>
                   Edit
-                </button>
+                </button> */}
               </>
             )}
           </div>

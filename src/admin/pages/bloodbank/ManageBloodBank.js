@@ -206,8 +206,7 @@ const ManageBloodBank = () => {
         </form>
 
         {/* Blood Bank Sorting */}
-        <div style={{ marginTop: "20px" }}>
-          <h3>Sort Blood Banks</h3>
+        <div style={{ marginTop: "20px" }} className="sort">
           <div>
             <label>
               Sort by:{" "}
@@ -228,11 +227,21 @@ const ManageBloodBank = () => {
                 value={bloodSortConfig.direction}
                 onChange={handleBloodSortConfigChange}
               >
-                <option value="asc">Ascending</option>
-                <option value="desc">Descending</option>
+                <option value="a+">A+</option>
+                <option value="o+">O+</option>
+                <option value="b+">B+</option>
+                <option value="ab+">AB+</option>
+                <option value="A-">A-</option>
+                <option value="o-">O-</option>
+                <option value="b-">B-</option>
+                <option value="ab-">AB-</option>
               </select>
             </label>
-            <button onClick={handleBloodSort} style={{ marginLeft: "10px" }}>
+            <button
+              onClick={handleBloodSort}
+              style={{ marginLeft: "10px" }}
+              className="sort-btn"
+            >
               Apply Sort
             </button>
           </div>
@@ -258,9 +267,9 @@ const ManageBloodBank = () => {
                 </tr>
               </thead>
               <tbody>
-                {bloodBanks.map((bank) => (
+                {bloodBanks.map((bank, index) => (
                   <tr key={bank.id}>
-                    <td>{bank.id}</td>
+                    <td>{index + 1}</td>
                     <td>{bank.bloodbank}</td>
                     <td>{bank.category}</td>
                     <td>{bank.bloodtype}</td>
@@ -287,7 +296,7 @@ const ManageBloodBank = () => {
         )}
 
         {/* Donor Search */}
-        <form onSubmit={handleDonorSearch}>
+        <form onSubmit={handleDonorSearch} className="donor-form">
           <h3>Search Donors by Location</h3>
           <div className="primary-form">
             <input
@@ -302,34 +311,42 @@ const ManageBloodBank = () => {
         </form>
 
         {/* Donor Sorting */}
-        <div style={{ marginTop: "20px" }}>
-          <h3>Sort Available Donors</h3>
+        <div style={{ marginTop: "20px" }} className="sort">
           <div>
             <label>
               Sort by:{" "}
               <select
                 name="key"
-                value={donorSortConfig.key}
-                onChange={handleDonorSortConfigChange}
+                value={bloodSortConfig.key}
+                onChange={handleBloodSortConfigChange}
               >
-                <option value="name">Name</option>
+                <option value="bloodbank">Blood Bank</option>
                 <option value="bloodtype">Blood Type</option>
-                <option value="location">Location</option>
-                <option value="age">Age</option>
+                <option value="category">Category</option>
               </select>
             </label>
             <label style={{ marginLeft: "10px" }}>
               Order:{" "}
               <select
                 name="direction"
-                value={donorSortConfig.direction}
-                onChange={handleDonorSortConfigChange}
+                value={bloodSortConfig.direction}
+                onChange={handleBloodSortConfigChange}
               >
-                <option value="asc">Ascending</option>
-                <option value="desc">Descending</option>
+                <option value="a+">A+</option>
+                <option value="o+">O+</option>
+                <option value="b+">B+</option>
+                <option value="ab+">AB+</option>
+                <option value="A-">A-</option>
+                <option value="o-">O-</option>
+                <option value="b-">B-</option>
+                <option value="ab-">AB-</option>
               </select>
             </label>
-            <button onClick={handleDonorSort} style={{ marginLeft: "10px" }}>
+            <button
+              onClick={handleBloodSort}
+              style={{ marginLeft: "10px" }}
+              className="sort-btn"
+            >
               Apply Sort
             </button>
           </div>
@@ -343,7 +360,7 @@ const ManageBloodBank = () => {
         ) : (
           <div>
             <h3>Available Donors</h3>
-            <table border="1">
+            <table border="1" className="donor-table">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -356,9 +373,9 @@ const ManageBloodBank = () => {
                 </tr>
               </thead>
               <tbody>
-                {donors.map((donor) => (
+                {donors.map((donor, index) => (
                   <tr key={donor.id}>
-                    <td>{donor.id}</td>
+                    <td>{index + 1}</td>
                     <td>{donor.name}</td>
                     <td>{donor.age}</td>
                     <td>{donor.bloodtype}</td>

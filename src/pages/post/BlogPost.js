@@ -83,9 +83,9 @@ const BlogPost = () => {
             </div>
           ))}
         </div>
-        <div className="read-more">
+        {/* <div className="read-more">
           Read More <FontAwesomeIcon icon={faArrowRight} />
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -92,7 +92,7 @@ const UpdatePost = () => {
         <thead>
           <tr>
             <th>Title</th>
-            <th>Image</th>
+            <th>Content</th>
             <th>Created At</th>
             <th>Actions</th>
           </tr>
@@ -101,17 +101,7 @@ const UpdatePost = () => {
           {posts.map((post) => (
             <tr key={post.id}>
               <td>{post.title}</td>
-              <td>
-                {post.image ? (
-                  <img
-                    src={`http://localhost:5000${post.image}`}
-                    alt={post.title}
-                    style={{ width: "100px", height: "auto" }}
-                  />
-                ) : (
-                  "No Image"
-                )}
-              </td>
+              <td>{post.content}</td>
               <td>{new Date(post.created_at).toLocaleDateString()}</td>
               <td>
                 <div className="action-wrapper">

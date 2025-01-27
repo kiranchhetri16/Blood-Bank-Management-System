@@ -1,5 +1,6 @@
 import "./css/App.css";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from "./pages/authentication/signup";
 import FetchData from "./fletch-data";
@@ -38,6 +39,9 @@ import UpdateEvent from "./admin/pages/User Management/UpdateEvent";
 import EditEvent from "./admin/pages/User Management/EditEvent";
 import UpdatePost from "./admin/pages/User Management/UpdatePost";
 import EditPost from "./admin/pages/User Management/EditPost";
+import ForgotPassword from "./pages/authentication/ForgotPassword";
+import ResetPassword from "./pages/authentication/ResetPassword";
+import NavBar from "./pages/theme/NavBar";
 
 function App() {
   return (
@@ -98,8 +102,12 @@ function App() {
           <Route path="/signup" element={<Signup />} />
 
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+  
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </div>
   );
 }

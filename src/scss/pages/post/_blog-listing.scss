@@ -1,31 +1,40 @@
 .blog-listing-section {
   width: 100%;
   margin: auto;
-  h2 {
-    font-size: 40px;
-    line-height: 44px;
-    font-weight: 700;
-    text-align: center;
-    padding: 12px 0;
-  }
-  i {
+  .current-post {
     display: flex;
-    gap: 12px;
+    flex-direction: column;
 
-    margin: auto;
-    margin: 0 100px;
-    span {
-      font-size: 16px;
+    h2 {
+      font-size: 40px;
+      line-height: 44px;
+      font-weight: 700;
+      text-align: center;
+      padding: 12px 0;
+    }
+    img {
+      height: auto;
+      width: 500px;
+      margin: auto;
+    }
+    i {
+      display: flex;
+      gap: 12px;
+
+      margin: auto;
+      margin: 0 100px;
+      span {
+        font-size: 16px;
+      }
+    }
+    p {
+      font-size: 24px;
+      line-height: 32px;
+      padding: 16px 0;
+      margin: auto;
+      margin: 0 100px;
     }
   }
-  p {
-    font-size: 24px;
-    line-height: 32px;
-    padding: 16px 0;
-    margin: auto;
-    margin: 0 100px;
-  }
-
   .related-post {
     font-size: 40px;
     line-height: 44px;
@@ -33,6 +42,7 @@
     text-align: center;
     padding-top: 32px;
     padding-bottom: 16px;
+    color: red;
   }
   .blog-wrapper {
     display: flex;
@@ -40,6 +50,7 @@
     gap: 24px;
     margin: auto;
     justify-content: center;
+
     .cart-wrapper {
       width: 400px;
       display: flex;
@@ -49,8 +60,12 @@
       height: auto;
       padding: 12px;
       border-radius: 8px;
-      .image-cart {
+      margin-top: 16px;
+      img {
         height: 200px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 8px;
       }
       .related-icon {
         display: flex;
@@ -68,7 +83,8 @@
         &:hover {
           cursor: pointer;
           text-decoration: underline;
-          color: #007000;
+          color: red;
+          transition: 0.3s;
         }
       }
       &:hover {

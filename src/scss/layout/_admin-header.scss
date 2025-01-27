@@ -47,20 +47,12 @@
           color: #8798ad;
         }
       }
-      .profile {
+      button {
         height: 30px;
-        width: 30px;
+        width: fit-content;
         background-color: #f8ddb8;
-        border-radius: 50%;
+        border-radius: 8px;
         padding: 4px;
-
-        p {
-          font-size: 12px;
-          color: #ff9400;
-          line-height: 16px;
-          text-align: center;
-          padding-top: 6px;
-        }
       }
     }
   }

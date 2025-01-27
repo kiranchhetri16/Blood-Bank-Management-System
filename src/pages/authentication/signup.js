@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { showSuccessMessage } from "../../Utils/Notification";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -23,8 +24,8 @@ const Signup = () => {
         body: JSON.stringify({ name, email, password, address }),
       });
       if (response.ok) {
-        setMessage("Signup successful!");
         navigate("/login");
+        showSuccessMessage("Successfully Sign Up");
       } else {
         setMessage("Signup failed!");
       }

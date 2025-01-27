@@ -43,7 +43,7 @@ const UserDetails = () => {
     e.preventDefault();
     try {
       await axios.put(`http://localhost:5000/data/${userId}`, user);
-      navigate("/user-management"); // Navigate back to the home page after submission
+      navigate("/dashboard/user-management"); // Navigate back to the home page after submission
     } catch (error) {
       console.error("Error updating user:", error);
     }

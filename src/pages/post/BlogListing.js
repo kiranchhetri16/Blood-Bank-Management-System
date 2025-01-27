@@ -46,19 +46,15 @@ const BlogListing = () => {
   return (
     <section className="blog-listing-section">
       <div className="ci-container">
-        {/* Display the current post */}
         <div className="current-post">
           <h2>{currentPost.title}</h2>
-          <div
-            className="post-image"
-            style={{
-              backgroundImage: currentPost.image
-                ? `url(http://localhost:5000${currentPost.image})`
-                : "none",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          ></div>
+          {currentPost.image && (
+            <img
+              className="post-image"
+              src={`http://localhost:5000${currentPost.image}`}
+              alt={currentPost.title}
+            />
+          )}
           <i>
             <FontAwesomeIcon icon={faCalendar} />
             <span>{new Date(currentPost.created_at).toLocaleDateString()}</span>
@@ -66,37 +62,41 @@ const BlogListing = () => {
           <p>{currentPost.content}</p>
         </div>
 
-        {/* Display other posts */}
-        <h2 className="related-post">Related Post</h2>
-        <div className="blog-wrapper">
-          {posts
-            .filter((post) => post.id !== parseInt(id)) // Exclude the current post from the list
-            .map((post) => (
-              <div className="cart-wrapper" key={post.id}>
-                <div
-                  className="cart-image"
-                  style={{
-                    backgroundImage: post.image
-                      ? `url(${
+        <div className="related-post-wrapper">
+          <h2 className="related-post">Related Post</h2>
+          <hr />
+          <div className="blog-wrapper">
+            {posts
+              .filter((post) => post.id !== parseInt(id)) // Exclude the current post from the list
+              .map((post) => (
+                <div className="cart-wrapper" key={post.id}>
+                  <div className="img-wrapper">
+                    {post.image && (
+                      <img
+                        className="cart-image"
+                        src={
                           post.image.startsWith("http")
                             ? post.image
                             : `http://localhost:5000${post.image}`
-                        })`
-                      : "none",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                ></div>
-                <div className="image-cart"></div>
-                <i className="related-icon">
-                  <FontAwesomeIcon icon={faCalendar} />
-                  <span>{new Date(post.created_at).toLocaleDateString()}</span>
-                </i>
-                <Link to={`/listingpage/${post.id}`}>
-                  <h3>{post.title}</h3>
-                </Link>
-              </div>
-            ))}
+                        }
+                        alt={post.title}
+                      />
+                    )}
+                  </div>
+                  <div className="content-wrapper">
+                    <Link to={`/listingpage/${post.id}`}>
+                      <h3>{post.title}</h3>
+                    </Link>
+                    <i className="related-icon">
+                      <FontAwesomeIcon icon={faCalendar} />
+                      <span>
+                        {new Date(post.created_at).toLocaleDateString()}
+                      </span>
+                    </i>
+                  </div>
+                </div>
+              ))}
+          </div>
         </div>
       </div>
     </section>

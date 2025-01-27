@@ -1,8 +1,11 @@
 import React from "react";
 import AdminHeader from "./adminheader";
 import SideBar from "./sidebar";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
+import TotalUsers from "../User Management/TotalUsers";
 const Dashboard = () => {
+  const location = useLocation();
+  const isRoot = location.pathname === "/";
   return (
     <>
       <AdminHeader />
@@ -10,10 +13,8 @@ const Dashboard = () => {
         <div className="side-bar">
           <SideBar />
         </div>
-        <div className="main-body">
-          <Outlet />
-        </div>
-       
+
+        <div className="main-body">{isRoot ? <TotalUsers /> : <Outlet />}</div>
       </div>
     </>
   );

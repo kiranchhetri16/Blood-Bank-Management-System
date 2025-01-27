@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { showSuccessMessage } from "../../Utils/Notification";
 
 const Login = () => {
   const [name, setName] = useState("");
@@ -20,10 +21,10 @@ const Login = () => {
 
     // Check for admin credentials
     if (name === "admin" && password === "admin") {
-      setMessage("Login successful as Admin!");
       localStorage.setItem("isLogin", "1");
       localStorage.setItem("name", name);
       navigate("/dashboard");
+      showSuccessMessage("Login Success");
       return;
     }
 
@@ -49,6 +50,7 @@ const Login = () => {
           setUser(JSON.parse(storedUser));
         }
         navigate("/");
+        showSuccessMessage("Login Successful");
       } else {
         setMessage("Invalid credentials");
       }

@@ -126,6 +126,98 @@
   text-decoration: none;
 }
 
+.forgot-password-secton {
+  width: 100%;
+  margin: auto;
+}
+.forgot-password-secton h2 {
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 64px;
+}
+.forgot-password-secton form {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 16px;
+  margin: auto;
+  margin-top: 32px;
+}
+.forgot-password-secton form input[type=email] {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 18px;
+}
+.forgot-password-secton form button {
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: 6px;
+  margin: auto;
+  background-color: #60bb46;
+  font-size: 16px;
+  line-height: 24px;
+  border: none;
+  color: #fff;
+  margin-top: 12px;
+}
+.forgot-password-secton form button:hover {
+  cursor: pointer;
+  background-color: #0099fe;
+  transition: 0.3s;
+}
+
+.reset-password-section {
+  width: 100%;
+  margin: auto;
+}
+.reset-password-section h2 {
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 64px;
+}
+.reset-password-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 500px;
+  border: 1px solid black;
+  padding: 16px;
+  border-radius: 8px;
+  margin: auto;
+  margin-top: 32px;
+}
+.reset-password-section form input[type=password] {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 18px;
+}
+.reset-password-section form button {
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: 6px;
+  margin: auto;
+  background-color: #60bb46;
+  font-size: 16px;
+  line-height: 24px;
+  border: none;
+  color: #fff;
+  margin-top: 12px;
+}
+.reset-password-section form button:hover {
+  cursor: pointer;
+  background-color: #0099fe;
+  transition: 0.3s;
+}
+
 header .header {
   width: 100%;
   background-color: #eb2b2b;
@@ -400,19 +492,12 @@ header .header .nav-wrapper .troggle-btn .nav_close {
   font-size: 16px;
   color: #8798ad;
 }
-.admin-header nav .menu-item .profile {
+.admin-header nav .menu-item button {
   height: 30px;
-  width: 30px;
+  width: fit-content;
   background-color: #f8ddb8;
-  border-radius: 50%;
+  border-radius: 8px;
   padding: 4px;
-}
-.admin-header nav .menu-item .profile p {
-  font-size: 12px;
-  color: #ff9400;
-  line-height: 16px;
-  text-align: center;
-  padding-top: 6px;
 }
 
 .side-bar {
@@ -1395,6 +1480,9 @@ body {
   background-color: #bf2229;
   transition: 0.3s;
 }
+.manage-bloodbank form.donor-form {
+  margin-top: 64px;
+}
 .manage-bloodbank h3 {
   color: red;
   font-size: 20px;
@@ -1459,6 +1547,26 @@ body {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
+}
+.manage-bloodbank table.donor-table {
+  background-color: #dee2e6;
+}
+
+.sort {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.sort select {
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+.sort .sort-btn {
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  line-height: 16px;
 }
 
 .blog-section {
@@ -1621,23 +1729,32 @@ body {
   width: 100%;
   margin: auto;
 }
-.blog-listing-section h2 {
+.blog-listing-section .current-post {
+  display: flex;
+  flex-direction: column;
+}
+.blog-listing-section .current-post h2 {
   font-size: 40px;
   line-height: 44px;
   font-weight: 700;
   text-align: center;
   padding: 12px 0;
 }
-.blog-listing-section i {
+.blog-listing-section .current-post img {
+  height: auto;
+  width: 500px;
+  margin: auto;
+}
+.blog-listing-section .current-post i {
   display: flex;
   gap: 12px;
   margin: auto;
   margin: 0 100px;
 }
-.blog-listing-section i span {
+.blog-listing-section .current-post i span {
   font-size: 16px;
 }
-.blog-listing-section p {
+.blog-listing-section .current-post p {
   font-size: 24px;
   line-height: 32px;
   padding: 16px 0;
@@ -1651,6 +1768,7 @@ body {
   text-align: center;
   padding-top: 32px;
   padding-bottom: 16px;
+  color: red;
 }
 .blog-listing-section .blog-wrapper {
   display: flex;
@@ -1668,9 +1786,13 @@ body {
   height: auto;
   padding: 12px;
   border-radius: 8px;
+  margin-top: 16px;
 }
-.blog-listing-section .blog-wrapper .cart-wrapper .image-cart {
+.blog-listing-section .blog-wrapper .cart-wrapper img {
   height: 200px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
 }
 .blog-listing-section .blog-wrapper .cart-wrapper .related-icon {
   display: flex;
@@ -1689,7 +1811,8 @@ body {
 .blog-listing-section .blog-wrapper .cart-wrapper a:hover {
   cursor: pointer;
   text-decoration: underline;
-  color: #007000;
+  color: red;
+  transition: 0.3s;
 }
 .blog-listing-section .blog-wrapper .cart-wrapper:hover {
   cursor: pointer;
@@ -2168,65 +2291,31 @@ body {
   justify-content: center;
   margin-top: 24px;
 }
-.manage-cart-wrapper .cart-wrapper .cart-user {
-  padding: 56px 0;
-  background: #f46d43;
-  color: white;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-}
-.manage-cart-wrapper .cart-wrapper .cart-user h3 {
-  font-size: 18px;
-  line-height: 22px;
-  text-align: center;
-}
-.manage-cart-wrapper .cart-wrapper .cart-user p {
-  font-size: 56px;
-  line-height: 18px;
-  font-weight: 400;
-  text-align: center;
-  padding: 16px 0;
-}
-.manage-cart-wrapper .cart-wrapper .cart-donor {
-  padding: 56px 0;
-  background: #d53e4f;
-  color: white;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-}
-.manage-cart-wrapper .cart-wrapper .cart-donor h3 {
-  font-size: 18px;
-  line-height: 22px;
-  text-align: center;
-}
-.manage-cart-wrapper .cart-wrapper .cart-donor p {
-  font-size: 56px;
-  line-height: 18px;
-  font-weight: 400;
-  text-align: center;
-  padding: 16px 0;
-}
+.manage-cart-wrapper .cart-wrapper .cart-user,
+.manage-cart-wrapper .cart-wrapper .cart-donor,
 .manage-cart-wrapper .cart-wrapper .cart-volunteer {
   padding: 56px 0;
-  background-color: #5e4fa2;
-  color: white;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
+  color: #000;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  width: 300px;
+  height: 150px;
+  border-radius: 16px;
 }
+.manage-cart-wrapper .cart-wrapper .cart-user h3,
+.manage-cart-wrapper .cart-wrapper .cart-donor h3,
 .manage-cart-wrapper .cart-wrapper .cart-volunteer h3 {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 22px;
   text-align: center;
+  margin-top: 16px;
 }
+.manage-cart-wrapper .cart-wrapper .cart-user p,
+.manage-cart-wrapper .cart-wrapper .cart-donor p,
 .manage-cart-wrapper .cart-wrapper .cart-volunteer p {
   font-size: 56px;
   line-height: 18px;
   font-weight: 400;
   text-align: center;
-  padding: 16px 0;
 }
 
 .add-event-wrapper {
@@ -2320,7 +2409,6 @@ body {
 .event-blog-section {
   width: 100%;
   margin: auto;
-  margin-top: 64px;
   padding: 36px 0;
 }
 .event-blog-section h2 {
